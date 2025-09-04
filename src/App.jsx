@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 
+
+
 // Pagine
 import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";

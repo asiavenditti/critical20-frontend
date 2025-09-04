@@ -17,29 +17,10 @@ export default function DetailsProductPage() {
 
   return (
     <>
+      {/*container */}
       <div className="container d-flex   d-flex justify-content-center containercarddetails  mt-5">
-        <div className="row d-flex">
-          <div className="col-md-6">
-            <div className="card">
-              <img
-                src="/img/azul.png"
-                className="card-img-top h-75 w-75"
-                alt="..."
-              />
-              <div className="card-body">
-                <h5 className="card-title text-white">Card title</h5>
-                <p className="card-text text-white">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card’s content.
-                </p>
-                <a href="#" className="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* card orizzontale  */}
+        {/*card orizzontale  */}
+
         <div className="card mb-3" style={{ maxWidth: 800 }}>
           <div className="row g-0">
             {/* Immagine a sinistra */}
@@ -71,6 +52,16 @@ export default function DetailsProductPage() {
             </div>
           </div>
         </div>
+        {/*sezione con eventuali parti aggiuntive */}
+        <section>
+          inserire parte con Descrizione lunga ed aventuali FAQ{" "}
+        </section>
+        {/*elemento grafico statico figo */}
+        <p>bella foto con qualcosa di bello </p>
+
+        {/*carosello con prodotti correlati */}
+        <p>carosello prodotti correlati </p>
+        {/*fine container */}
       </div>
     </>
   );

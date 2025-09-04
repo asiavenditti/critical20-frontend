@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default function Header() {
     return (
@@ -20,33 +21,33 @@ export default function Header() {
                         <div className="collapse navbar-collapse text-light" id="navbarEcommerce">
                             <ul className="navbar-nav mx-auto mb-2 mb-lg-0 text-light">
                                 <li className="nav-item">
-                                    <a className="nav-link active text-light" href="#">
+                                    <Link className="nav-link active text-light" to="/">
                                         Home
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-light" href="#">
+                                    <Link className="nav-link text-light" to="/products">
                                         Prodotti
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-light" href="#">
+                                    <Link className="nav-link text-light" to="#">
                                         Offerte
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-light" href="#">
+                                    <Link className="nav-link text-light" to="#">
                                         Contatti
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                             <div className="d-flex align-items-center gap-3">
-                                <a href="#" className="btn btn-outline-light btn-sm">
+                                <Link to="#" className="btn btn-outline-light btn-sm">
                                     Login
-                                </a>
-                                <a href="#" className="btn btn-light btn-sm">
+                                </Link>
+                                <Link to="#" className="btn btn-light btn-sm">
                                     Carrello (0)
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

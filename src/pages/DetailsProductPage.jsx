@@ -64,21 +64,23 @@ export default function DetailsProductPage() {
                   <h2 className="fw-bold mb-3">{name}</h2>
 
                   <div className="mb-2">
-                    <span className="badge bg-secondary me-2">Età: {age}+</span>
-                    <span className="badge bg-secondary me-2">
+                    <span className="badge bg-secondary lh-base me-2">
+                      Età: {age}+
+                    </span>
+                    <span className="badge bg-secondary lh-base me-2">
                       Giocatori: {players}
                     </span>
-                    <span className="badge bg-secondary me-2">
+                    <span className="badge bg-secondary lh-base me-2">
                       Durata: {duration}
                     </span>
-                    <span className="badge bg-secondary me-2">
+                    <span className="badge bg-secondary lh-base me-2">
                       Lingua: {language}
                     </span>
                   </div>
 
                   <p className="mt-3 mb-1">
                     <strong>Difficoltà:</strong>{" "}
-                    <span className="badge bg-success text-dark">
+                    <span className="badge bg-success text-dark lh-base">
                       {difficulty}
                     </span>
                   </p>
@@ -95,7 +97,7 @@ export default function DetailsProductPage() {
                     {categories?.map((category, index) => (
                       <span
                         key={index}
-                        className="badge rounded-pill bg-primary text-white"
+                        className="badge rounded-pill bg-primary text-white lh-base"
                       >
                         {category}
                       </span>

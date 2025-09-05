@@ -10,21 +10,42 @@ export default function DetailsProductPage() {
   const productId = Number(id);
 
   const api_product = `http://localhost:3030/api/products/${productId}`;
-  const [game, setGame] = useState(null);
+  const [game, setGame] = useState({});
 
-  useEffect(() => {
+  let firstCategoryId = null;
+
+  function gnrP() {
     fetch(api_product)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setGame(data);
+        setGame(data[0]);
+      })
+      .then((data) => {
+        firstCategoryId = Number(data.id_category[0]);
       });
-  }, [api_product]);
+  }
+
+  useEffect(gnrP, []);
+
+  // useEffect(() => {
+  //   fetch(api_product)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setGame(data);
+  //     })
+  //     .then(() => {
+  //       firstCategoryId = Number(game.id_category[0]);
+  //     });
+  // }, [api_product]);
+
+  console.log(firstCategoryId);
 
   return (
     <div className="container my-5">
-      {game?.map(
-        ({
+      {game &&
+        (({
           id,
           name,
           description,
@@ -136,8 +157,7 @@ export default function DetailsProductPage() {
               </div>
             </div>
           </div>
-        )
-      )}
+        ))}
 
       {/* Extra content placeholder */}
       <div className="container mt-5">
@@ -153,13 +173,15 @@ export default function DetailsProductPage() {
             <li>Quando viene consegnato?</li>
             <li>È disponibile in altre lingue?</li>
           </ul>
-
+          {/* Carosello prodotti correlati per categoria */}
           <div className="mt-5">
-            <h4>Prodotti Correlati</h4>
-            <Relatedgames />
+            <h1 className="text-light">Prodotti Correlati</h1>
+            {/* <Relatedgames categoryId={firstCategoryId} /> */}
           </div>
         </section>
       </div>
     </div>
   );
 }
+
+//categoryId={firstCategoryId}

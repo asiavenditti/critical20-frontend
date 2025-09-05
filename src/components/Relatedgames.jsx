@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Relatedgames() {
-  const { id } = useParams();
-  const categoryId = Number(id);
+export default function Relatedgames({ categoryId }) {
   const [categories, setCategorries] = useState([]);
 
   const url_categories = `http://localhost:3030/api/categories/${categoryId}`;

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
     return (
@@ -9,7 +11,7 @@ export default function Header() {
                 <nav className="navbar navbar-expand-lg navbar-light bgN shadow-sm small-navbar fixed-top">
                     <div className="container-fluid">
                         <button
-                            className="navbar-toggler text-black"
+                            className="navbar-toggler border-0 bg-transparent"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#navbarEcommerce"
@@ -17,9 +19,10 @@ export default function Header() {
                             aria-expanded="false"
                             aria-label="Toggle navigation"
                         >
-                            <span className="navbar-toggler-icon text-light" />
-                            {/* bottoni navbar */}
+                            <FontAwesomeIcon icon={faBars} size="lg" color="white" />
                         </button>
+
+
                         <div className="collapse navbar-collapse text-light" id="navbarEcommerce">
                             <ul className="navbar-nav mx-auto mb-2 mb-lg-0 text-light">
                                 <li className="nav-item">

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 
 
-
-
 export default function ProductListPage() {
     const [games, setGames] = useState([]);
     const url = "http://localhost:3030/api/products"

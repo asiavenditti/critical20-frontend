@@ -127,3 +127,74 @@ h1 {
     background-color: #151726;
     opacity: 80%;
 }
+
+/* FOOTER */
+
+.footer {
+    background-color: #1c1f2e;
+    color: white;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
+}
+
+.footer-section-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.footer-link {
+    display: block;
+    color: #cccccc;
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
+    font-family: inherit;
+}
+
+.footer-link:hover {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.footer-social-list {
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.footer-social-list li {
+    margin-bottom: 0.75rem;
+    list-style: none;
+}
+
+.footer-social {
+    color: #ffffff;
+    font-size: 1.25rem;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.footer-social:hover {
+    color: #ffcc00;
+}
+
+.footer-divider {
+    border-color: #444;
+    margin: 2rem 0 1rem;
+}
+
+.footer-copy {
+    font-size: 0.85rem;
+    margin: 0;
+    font-family: inherit;
+}
+
+.footer ul {
+    padding-left: 0;
+    text-align: center;
+}

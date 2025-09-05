@@ -33,8 +33,8 @@ export default function HomePage() {
                 <div className="row">
                     <h1 className='text-light text-center mb-4 mt-2'> - I NUOVI ARRIVI -</h1>
                     {games.map((game) => (
-                        <div key={game.id} className="col-md-3"> {/* 4 colonne uguali */}
-                            <div className="card bg-light h-100 mb-3">
+                        <div key={game.id} className="col-md-3 d-flex">
+                            <div className="card bg-light w-100 d-flex flex-column mb-3">
                                 <img
                                     src={img}
                                     alt={game.name}
@@ -45,7 +45,7 @@ export default function HomePage() {
                                         objectFit: "cover",
                                     }}
                                 />
-                                <div className="card-body text-center">
+                                <div className="card-body d-flex flex-column text-center">
                                     <h5 className="card-title">{game.name}</h5>
                                     <p className="card-text">{game.description}</p>
                                     <p className="card-text">
@@ -54,20 +54,21 @@ export default function HomePage() {
                                                 <span className="text-muted text-decoration-line-through me-2">
                                                     €{game.original_price}
                                                 </span>
-                                                <span className="fw-bold text-success">
-                                                    €{game.price}
-                                                </span>
+                                                <span className="fw-bold text-success">€{game.price}</span>
                                             </>
                                         ) : (
                                             <span className="fw-bold">€{game.price}</span>
                                         )}
                                     </p>
-                                    <Link to="/" className="btn btn-primary">
-                                        Vai al gioco
-                                    </Link>
+                                    <div className="mt-auto">
+                                        <Link to="/" className="btn btn-primary">
+                                            Vai al gioco
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     ))}
                 </div>
             </div>

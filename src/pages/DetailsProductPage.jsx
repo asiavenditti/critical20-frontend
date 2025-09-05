@@ -6,7 +6,6 @@ export default function DetailsProductPage() {
   const productId = Number(id);
 
   const api_product = `http://localhost:3030/api/products/${productId}`;
-
   const [game, setGame] = useState(null);
 
   useEffect(() => {
@@ -19,112 +18,142 @@ export default function DetailsProductPage() {
   }, [api_product]);
 
   return (
-    <>
-      <div className="container d-flex justify-content-center containercarddetails mt-5">
-        <div className="card mb-3" style={{ maxWidth: 900 }}>
-          <div className="row g-0">
-            {game?.map(
-              ({
-                id,
-                name,
-                description,
-                original_price,
-                price,
-                language,
-                duration,
-                difficulty,
-                isbn,
-                players,
-                editor,
-                age,
-                categories,
-              }) => (
-                <div
-                  key={id}
-                  className="card-body bg-white bg-opacity-50 text-dark shadow rounded-3"
-                  style={{ backdropFilter: "blur(8px)" }}
-                >
-                  <div className="row">
-                    {/* Colonna immagine */}
-                    <div className="col-6 d-flex align-items-center">
-                      <img
-                        src="/img/Ticket_to_Ride_Northern_Lights_box-1024x1024.webp"
-                        className="img-fluid rounded-start"
-                        alt="Immagine prodotto"
-                        style={{ width: "100%" }}
-                      />
-                    </div>
+    <div className="container my-5">
+      {game?.map(
+        ({
+          id,
+          name,
+          description,
+          original_price,
+          price,
+          language,
+          duration,
+          difficulty,
+          isbn,
+          players,
+          editor,
+          age,
+          categories,
+        }) => (
+          <div
+            key={id}
+            className="card shadow-lg border-0 rounded-4 overflow-hidden"
+            style={{
+              backgroundColor: "#f9f9f9",
+              color: "#222",
+            }}
+          >
+            <div className="row g-0">
+              {/* Image Section */}
+              <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
+                <img
+                  src="/img/Ticket_to_Ride_Northern_Lights_box-1024x1024.webp"
+                  className="img-fluid rounded"
+                  alt="Immagine prodotto"
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    maxHeight: "450px",
+                  }}
+                />
+              </div>
 
-                    {/* Colonna con i primi 4 dati */}
-                    <div className="col-6">
-                      <h5 className="card-title">{name}</h5>
-                      <p className="card-text">
-                        <strong>Età:</strong> a partire dai {age}
-                      </p>
-                      <p className="card-text">
-                        <strong>Giocatori: </strong>
-                        {players}
-                      </p>
-                      <p className="card-text">
-                        <strong>Durata:</strong> {duration}
-                      </p>
-                      <p className="card-text">
-                        <strong>Lingua: </strong>
-                        {language}
-                      </p>
-                      <p className="card-text">
-                        <strong>Difficoltà: </strong>
-                        {difficulty}
-                      </p>
+              {/* Info Section */}
+              <div className="col-md-7 p-4 d-flex flex-column justify-content-between">
+                <div>
+                  <h2 className="fw-bold mb-3">{name}</h2>
 
-                      <p>
-                        <strong>Categorie:</strong>
-                      </p>
-                      <ul>
-                        {categories?.map((category, index) => (
-                          <li key={index}>{category}</li>
-                        ))}
-                      </ul>
-
-                      <p className="card-text">
-                        <strong>Isbn: </strong> {isbn}
-                      </p>
-                    </div>
+                  <div className="mb-2">
+                    <span className="badge bg-secondary me-2">Età: {age}+</span>
+                    <span className="badge bg-secondary me-2">
+                      Giocatori: {players}
+                    </span>
+                    <span className="badge bg-secondary me-2">
+                      Durata: {duration}
+                    </span>
+                    <span className="badge bg-secondary me-2">
+                      Lingua: {language}
+                    </span>
                   </div>
 
-                  {/* Resto delle informazioni sotto */}
-                  <div className="row mt-3">
-                    <div className="col-12">
-                      <p className="card-text">
-                        <strong>Editore: </strong> {editor}
-                      </p>
-                      <p className="card-text">
-                        <strong>Descrizione: </strong>
-                        {description}
-                      </p>
-                      <p className="card-text text-decoration-line-through text-secondary">
-                        Prezzo: {original_price}
-                      </p>
-                      <p className="card-text fs-5">
-                        <strong>Prezzo:</strong> {price}
-                      </p>
-                      <a href="#" className="btn btn-primary">
-                        Aggiungi al carrello
-                      </a>
-                    </div>
+                  <p className="mt-3 mb-1">
+                    <strong>Difficoltà:</strong>{" "}
+                    <span className="badge bg-success text-dark">
+                      {difficulty}
+                    </span>
+                  </p>
+                  <p>
+                    <strong>ISBN:</strong> {isbn}
+                  </p>
+
+                  <hr />
+
+                  <p>
+                    <strong>Categoria:</strong>
+                  </p>
+                  <div className="d-flex flex-wrap gap-2">
+                    {categories?.map((category, index) => (
+                      <span
+                        key={index}
+                        className="badge rounded-pill bg-primary text-white"
+                      >
+                        {category}
+                      </span>
+                    ))}
                   </div>
+
+                  <hr />
+
+                  <p>
+                    <strong>Editore:</strong> {editor}
+                  </p>
+                  <p className="mb-4">
+                    <strong>Descrizione:</strong>
+                    <br />
+                    {description}
+                  </p>
                 </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
 
-      <div className="container mt-4">
-        <section>inserire parte con Descrizione lunga ed eventuali FAQ</section>
-        <p>bella foto con qualcosa di bello</p>
-        <p>carosello prodotti correlati</p>
+                {/* Prezzo e CTA */}
+                <div className="mt-3">
+                  <p className="text-muted text-decoration-line-through mb-0">
+                    Prezzo originale: €{original_price}
+                  </p>
+                  <h4 className="text-danger fw-bold">
+                    Prezzo scontato: €{price}
+                  </h4>
+
+                  <button className="btn btn-dark btn-lg mt-2 w-100">
+                    🛒 Aggiungi al carrello
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      )}
+
+      {/* Extra content placeholder */}
+      <div className="container mt-5">
+        <section>
+          <h4>Descrizione lunga</h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit
+            amet arcu ut mauris cursus accumsan.
+          </p>
+
+          <h5 className="mt-4">FAQ</h5>
+          <ul>
+            <li>Quando viene consegnato?</li>
+            <li>È disponibile in altre lingue?</li>
+          </ul>
+
+          <div className="mt-5">
+            <h4>Prodotti Correlati</h4>
+            <p>[Carosello in costruzione]</p>
+          </div>
+        </section>
       </div>
-    </>
+    </div>
   );
 }

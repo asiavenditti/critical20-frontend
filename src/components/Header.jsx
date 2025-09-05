@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 export default function Header() {
     return (
         <>
+            {/* navbar */}
             <>
                 <nav className="navbar navbar-expand-lg navbar-light bgN shadow-sm small-navbar fixed-top">
                     <div className="container-fluid">
@@ -17,6 +18,7 @@ export default function Header() {
                             aria-label="Toggle navigation"
                         >
                             <span className="navbar-toggler-icon text-light" />
+                            {/* bottoni navbar */}
                         </button>
                         <div className="collapse navbar-collapse text-light" id="navbarEcommerce">
                             <ul className="navbar-nav mx-auto mb-2 mb-lg-0 text-light">

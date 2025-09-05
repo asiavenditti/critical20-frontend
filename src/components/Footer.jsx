@@ -7,49 +7,69 @@ export default function Footer() {
             style={{ backgroundColor: "#151726" }}
         >
             <div className="container">
-                <div className="row">
+                <div className="row text-center d-flex justify-content-center">
                     <div className="col-md-3">
-                        <h5>Sezione 1</h5>
+                        <h5>il Team</h5>
                         <ul className="list-unstyled">
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 1
+                                    Asia Venditti
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 2
+                                    Marzia Blasi
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 3
+                                    Cristian Buonocore
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-white text-decoration-none">
+                                    Edoardo Lova
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-white text-decoration-none">
+                                    Davide Criscuolo
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div className="col-md-3">
-                        <h5>Sezione 2</h5>
+                        <h5>Info utili</h5>
                         <ul className="list-unstyled">
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 4
+                                    Faq
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 5
+                                    Il Blog
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
-                                    Link 6
+                                    Contattaci
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-white text-decoration-none">
+                                    Termini e condizioni
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-white text-decoration-none">
+                                    Condizioni generali
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div className="col-md-3">
-                        <h5>Sezione 3</h5>
+                        <h5>Seguici</h5>
                         <ul className="list-unstyled">
                             <li>
                                 <a href="#" className="text-white text-decoration-none">
@@ -68,29 +88,9 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-md-3">
-                        <h5>Sezione 4</h5>
-                        <ul className="list-unstyled">
-                            <li>
-                                <a href="#" className="text-white text-decoration-none">
-                                    Link 10
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-white text-decoration-none">
-                                    Link 11
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-white text-decoration-none">
-                                    Link 12
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <hr className="border-light" />
-                <p className="text-center mb-0">© 2025 - Il tuo sito</p>
+                <p className="text-center mb-0">© 2025 - Critical20</p>
             </div>
         </footer>
 

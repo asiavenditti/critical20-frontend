@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+// Component
+
+import Relatedgames from "../components/Relatedgames";
+
 export default function DetailsProductPage() {
   const { id } = useParams();
   const productId = Number(id);
@@ -152,7 +156,7 @@ export default function DetailsProductPage() {
 
           <div className="mt-5">
             <h4>Prodotti Correlati</h4>
-            <p>[Carosello in costruzione]</p>
+            <Relatedgames />
           </div>
         </section>
       </div>

@@ -1,4 +1,4 @@
-import Jumbotron from '../components/Jumbotron'
+import Jumbotron from '../components/Jumbotron';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,13 +11,14 @@ export default function HomePage() {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                // Prendi solo i primi 4 nuovi arrivi (o quelli che vuoi)
+                // mostra solo 4 card
                 setGames(data.slice(0, 4));
             });
     }, []);
 
     return (
         <div>
+            {/* Logo centrale*/}
             <a className="d-flex justify-content-center sfondo positionR" href="#">
                 <img
                     src="img/logo_sito_-removebg-preview.png"
@@ -26,15 +27,22 @@ export default function HomePage() {
                     className="positionA"
                 />
             </a>
+
+            {/* Jumbotron senza margini extra */}
             <Jumbotron />
 
-            {/* Container statico con 4 card */}
+            {/* Sezione nuovi arrivi */}
             <div className="container mb-5 mt-5">
                 <div className="row">
-                    <h1 className='text-light text-center mb-4 mt-2'> - I NUOVI ARRIVI -</h1>
+                    <h1 className="text-light text-center mb-4 mt-2">- I NUOVI ARRIVI -</h1>
                     {games.map((game) => (
-                        <div key={game.id} className="col-md-3 d-flex">
-                            <div className="card bg-light w-100 d-flex flex-column mb-3">
+                        <div
+                            key={game.id}
+                            className="col-12 col-sm-12 col-md-6 col-lg-3 mb-4 d-flex"
+                        >
+                            <div
+                                className="card bg-light w-100 d-flex flex-column custom-card-padding"
+                            >
                                 <img
                                     src={img}
                                     alt={game.name}
@@ -54,7 +62,9 @@ export default function HomePage() {
                                                 <span className="text-muted text-decoration-line-through me-2">
                                                     €{game.original_price}
                                                 </span>
-                                                <span className="fw-bold text-success">€{game.price}</span>
+                                                <span className="fw-bold text-success">
+                                                    €{game.price}
+                                                </span>
                                             </>
                                         ) : (
                                             <span className="fw-bold">€{game.price}</span>
@@ -68,7 +78,6 @@ export default function HomePage() {
                                 </div>
                             </div>
                         </div>
-
                     ))}
                 </div>
             </div>

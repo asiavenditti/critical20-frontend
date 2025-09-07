@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Relatedgames({ categoryId }) {
   const [games, setGames] = useState([]);
+  const img = "/img/logo_sito_-removebg-preview.png"
 
   useEffect(() => {
     // reset quando cambia categoryId
@@ -124,8 +125,9 @@ export default function Relatedgames({ categoryId }) {
                   <div key={game.id} className="col-md-4">
                     <div className="card bg-light h-100 mb-3">
                       <img
-                        src={`/img/${game.img || "logo_sito_-removebg-preview.png"
-                          }`}
+                        // src={`/img/${game.img || { img }
+                        //   }`}
+                        src={img}
                         alt={game.name}
                         className="mx-auto d-block mt-3"
                         style={{

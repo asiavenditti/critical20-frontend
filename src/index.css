@@ -88,6 +88,18 @@ body {
 
 /* Hover */
 
+/* Colore giallo per link attivo */
+.navbar .nav-link.active {
+    color: #fadb7f !important;
+}
+
+/* Hover effetto giallo */
+.navbar .nav-link:hover {
+    color: #fadb7f !important;
+}
+
+
+
 .icon-hover-gold:hover svg {
     fill: #fadb7f;
     transition: fill 0.3s ease;
@@ -105,6 +117,8 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+
 
 
 /* Navbar compatta */
@@ -194,7 +208,7 @@ h1 {
 }
 
 .footer-link:hover {
-    color: #ffcc00;
+    color: #fadb7f;
     text-decoration: none;
 }
 
@@ -216,7 +230,7 @@ h1 {
 }
 
 .footer-social:hover {
-    color: #ffcc00;
+    color: #fadb7f;
 }
 
 .footer-divider {

@@ -124,9 +124,8 @@ export default function Relatedgames({ categoryId }) {
                   <div key={game.id} className="col-md-4">
                     <div className="card bg-light h-100 mb-3">
                       <img
-                        src={`/img/${
-                          game.img || "logo_sito_-removebg-preview.png"
-                        }`}
+                        src={`/img/${game.img || "logo_sito_-removebg-preview.png"
+                          }`}
                         alt={game.name}
                         className="mx-auto d-block mt-3"
                         style={{
@@ -152,10 +151,8 @@ export default function Relatedgames({ categoryId }) {
                             <span className="fw-bold">€{game.price}</span>
                           )}
                         </p>
-                        <Link
-                          to={`/products/${game.id}`}
-                          className="btn btn-primary"
-                        >
+                        {/* Link al dettaglio o azione */}
+                        <Link to={`/products/${game.id}`} className="btn btn-primary">
                           Vai al gioco
                         </Link>
                       </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Jumbotron() {
     return (
@@ -9,11 +8,11 @@ export default function Jumbotron() {
                 {/* SLIDE 1 */}
                 <div className="carousel-item active">
                     <section
-                        className="text-white text-center Jumbo d-flex align-items-center"
+                        className="text-white text-center d-flex align-items-center"
                         style={{
                             backgroundColor: "#151726",
                             border: "#151726 solid 3px",
-                            minHeight: "93vh",
+                            height: "100vh", // Altezza fissa per evitare salti
                             position: "relative",
                             overflow: "hidden",
                         }}
@@ -25,25 +24,11 @@ export default function Jumbotron() {
                                     <img
                                         src="./img/Ticket_to_Ride_Northern_Lights_box-1024x1024.webp"
                                         alt="Ticket to Ride"
-                                        className="img-fluid rounded shadow-lg"
+                                        className="img-fluid rounded"
                                         style={{
                                             maxWidth: "400px",
                                             width: "100%",
-                                        }}
-                                    />
-                                    {/* OVERLAY - visibile solo su desktop */}
-                                    <img
-                                        src="./img/Immagine_03-09-25_-_15.32-removebg-preview.png"
-                                        alt="Overlay"
-                                        className="d-none d-md-block"
-                                        style={{
-                                            position: "absolute",
-                                            top: "55%",
-                                            left: "40%",
-                                            width: "50%",
-                                            transform: "translate(-40%, -50%)",
-                                            maxWidth: "100%",
-                                            pointerEvents: "none",
+                                            height: "auto",
                                         }}
                                     />
                                 </div>
@@ -77,12 +62,12 @@ export default function Jumbotron() {
                 {/* SLIDE 2 */}
                 <div className="carousel-item">
                     <section
-                        className="text-white text-center Jumbo d-flex align-items-center"
+                        className="text-white text-center d-flex align-items-center"
                         style={{
                             backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/sfondo2.jpg')",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
-                            minHeight: "93vh",
+                            height: "100vh", // Stessa altezza della slide 1
                             border: "#151726 solid 3px"
                         }}
                     >

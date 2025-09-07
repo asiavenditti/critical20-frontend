@@ -64,11 +64,58 @@ body {
   border: white solid;
 }
 
+
+/* HEADER */
+
+.navbar .icon-link {
+    color: white;
+    /* colore base */
+    transition: color 0.3s ease;
+}
+
+.navbar .icon-link:hover,
+.navbar .icon-link:focus {
+    color: #fadb7f !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Hover */
+
+/* Colore giallo per link attivo */
+.navbar .nav-link.active {
+    color: #fadb7f !important;
+}
+
+/* Hover effetto giallo */
+.navbar .nav-link:hover {
+    color: #fadb7f !important;
+}
+
+
+
+.icon-hover-gold:hover svg {
+    fill: #fadb7f;
+    transition: fill 0.3s ease;
+}
+
+/* NAVBAR LINKS */
+.nav-custom-link {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.nav-custom-link:hover,
+.nav-custom-link:focus {
+    color: #fadb7f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Navbar compatta */
 .small-navbar {
-  padding: 0.3rem 1rem;
-  /* riduce altezza */
-  font-size: 0.9rem;
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
 }
 
 .small-navbar .navbar-brand img {
@@ -152,7 +199,7 @@ h6 {
 }
 
 .footer-link:hover {
-    color: #ffcc00;
+    color: #fadb7f;
     text-decoration: none;
 }
 
@@ -174,7 +221,7 @@ h6 {
 }
 
 .footer-social:hover {
-    color: #ffcc00;
+    color: #fadb7f;
 }
 
 .footer-divider {
@@ -193,7 +240,6 @@ h6 {
     text-align: center;
 }
 
-
 .card {
   background-color: #151726;
   opacity: 80%;
@@ -203,3 +249,17 @@ h6 {
   margin: 0 auto;
   width: 70%;
 }
+
+
+/* Padding extra solo per le card in modalità mobile */
+@media (max-width: 767px) {
+    .custom-card-padding {
+        margin: 1.2rem;
+    }
+
+    .products-card {
+        margin: 0.8rem;
+    }
+}
+
+

@@ -71,7 +71,8 @@ export default function HomePage() {
                                         )}
                                     </p>
                                     <div className="mt-auto">
-                                        <Link to="/" className="btn btn-primary">
+                                        {/* Link al dettaglio o azione */}
+                                        <Link to={`/products/${game.id}`} className="btn btn-primary">
                                             Vai al gioco
                                         </Link>
                                     </div>

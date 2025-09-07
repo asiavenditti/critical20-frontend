@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ProductListPage() {
     const [games, setGames] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("")
     const url = "http://localhost:3030/api/products"
     const img = "/img/logo_sito_-removebg-preview.png"
 
@@ -13,14 +14,27 @@ export default function ProductListPage() {
             .then((data) => setGames(data))
     }, []);
 
+    const filteredGames = games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
     return (
         <div className="container mt-5">
             {/* Titolo centrale e con margine */}
-            <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
+            <div className=''>
+                <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
+                <form class="form-inline my-2 my-lg-0 d-flex m-4 p-4 w-25 ">
+                    <input class="form-control mr-sm-2"
+                        type="search"
+                        placeholder="inserisci il tuo gioco..."
+                        aria-label="Search"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}>
+                    </input>
+                </form>
 
+            </div>
 
-            <div className="row g-4">
-                {games.map((game) => (
+            <div className="row g-4 mb-5">
+                {filteredGames.map((game) => (
                     <div
                         key={game.id}
                         className="col-12 col-md-6 col-lg-4"

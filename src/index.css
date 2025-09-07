@@ -68,54 +68,54 @@ body {
 /* HEADER */
 
 .navbar .icon-link {
-    color: white;
-    /* colore base */
-    transition: color 0.3s ease;
+  color: white;
+  /* colore base */
+  transition: color 0.3s ease;
 }
 
 .navbar .icon-link:hover,
 .navbar .icon-link:focus {
-    color: #fadb7f !important;
-    text-decoration: none;
-    cursor: pointer;
+  color: #fadb7f !important;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Hover */
 
 /* Colore giallo per link attivo */
 .navbar .nav-link.active {
-    color: #fadb7f !important;
+  color: #fadb7f !important;
 }
 
 /* Hover effetto giallo */
 .navbar .nav-link:hover {
-    color: #fadb7f !important;
+  color: #fadb7f !important;
 }
 
 
 
 .icon-hover-gold:hover svg {
-    fill: #fadb7f;
-    transition: fill 0.3s ease;
+  fill: #fadb7f;
+  transition: fill 0.3s ease;
 }
 
 /* NAVBAR LINKS */
 .nav-custom-link {
-    color: white;
-    transition: color 0.3s ease;
+  color: white;
+  transition: color 0.3s ease;
 }
 
 .nav-custom-link:hover,
 .nav-custom-link:focus {
-    color: #fadb7f;
-    text-decoration: none;
-    cursor: pointer;
+  color: #fadb7f;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Navbar compatta */
 .small-navbar {
-    padding: 0.3rem 1rem;
-    font-size: 0.9rem;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
 }
 
 .small-navbar .navbar-brand img {
@@ -163,7 +163,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: xx-large;
+  font-size: x-large;
   font-family: Cinzel;
 }
 
@@ -172,72 +172,72 @@ h6 {
 /* FOOTER */
 
 .footer {
-    background-color: #1c1f2e;
-    color: white;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-    font-family: system-ui, sans-serif;
-    font-size: 0.95rem;
+  background-color: #1c1f2e;
+  color: white;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
 }
 
 .footer-section-title {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 .footer-link {
-    display: block;
-    color: #cccccc;
-    text-decoration: none;
-    padding: 0.25rem 0;
-    transition: color 0.2s ease;
-    font-family: inherit;
+  display: block;
+  color: #cccccc;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
+  font-family: inherit;
 }
 
 .footer-link:hover {
-    color: #fadb7f;
-    text-decoration: none;
+  color: #fadb7f;
+  text-decoration: none;
 }
 
 .footer-social-list {
-    padding-left: 0;
-    margin-bottom: 1rem;
+  padding-left: 0;
+  margin-bottom: 1rem;
 }
 
 .footer-social-list li {
-    margin-bottom: 0.75rem;
-    list-style: none;
+  margin-bottom: 0.75rem;
+  list-style: none;
 }
 
 .footer-social {
-    color: #ffffff;
-    font-size: 1.25rem;
-    display: inline-block;
-    transition: color 0.3s ease;
+  color: #ffffff;
+  font-size: 1.25rem;
+  display: inline-block;
+  transition: color 0.3s ease;
 }
 
 .footer-social:hover {
-    color: #fadb7f;
+  color: #fadb7f;
 }
 
 .footer-divider {
-    border-color: #444;
-    margin: 2rem 0 1rem;
+  border-color: #444;
+  margin: 2rem 0 1rem;
 }
 
 .footer-copy {
-    font-size: 0.85rem;
-    margin: 0;
-    font-family: inherit;
+  font-size: 0.85rem;
+  margin: 0;
+  font-family: inherit;
 }
 
 .footer ul {
-    padding-left: 0;
-    text-align: center;
+  padding-left: 0;
+  text-align: center;
 }
 
 .card {
@@ -253,13 +253,11 @@ h6 {
 
 /* Padding extra solo per le card in modalità mobile */
 @media (max-width: 767px) {
-    .custom-card-padding {
-        margin: 1.2rem;
-    }
+  .custom-card-padding {
+    margin: 1.2rem;
+  }
 
-    .products-card {
-        margin: 0.8rem;
-    }
+  .products-card {
+    margin: 0.8rem;
+  }
 }
-
-

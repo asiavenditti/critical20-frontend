@@ -4,22 +4,92 @@ import { Link } from "react-router-dom";
 export default function Relatedgames({ categoryId }) {
   const [games, setGames] = useState([]);
 
-  const url_categories = `http://localhost:3030/api/categories/${categoryId}`;
-
   useEffect(() => {
+    // reset quando cambia categoryId
+    setGames([]);
+
     if (!categoryId) return;
 
-    fetch(url_categories)
-      .then((res) => res.json())
-      .then((data) => {
-        // Mischia e prendi massimo 6
-        const shuffled = data.sort(() => 0.5 - Math.random());
-        setGames(shuffled.slice(0, 6));
-      })
-      .catch((err) => console.error("Errore fetch correlati:", err));
-  }, [categoryId, url_categories]);
+    const url = `http://localhost:3030/api/categories/${categoryId}`;
+    console.log("Relatedgames: fetch", url, "categoryId:", categoryId);
 
-  // Funzione per dividere array in gruppi
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Relatedgames rawData:", data);
+
+        // Normalizza la risposta in un array di 'record'
+        let records;
+        if (Array.isArray(data)) {
+          records = data;
+        } else if (data && typeof data === "object") {
+          if (Array.isArray(data.data)) records = data.data;
+          else if (Array.isArray(data.categories)) records = data.categories;
+          else records = [data];
+        } else {
+          records = [];
+        }
+
+        // Helper: riconosce un "prodotto" minimo
+        const looksLikeProduct = (o) =>
+          o && typeof o === "object" && ("id" in o || "name" in o);
+
+        // Estrai tutti gli array di prodotti possibili dai record
+        let allProducts = [];
+        // caso: records è già un array di prodotti
+        if (
+          records.length > 0 &&
+          looksLikeProduct(records[0]) &&
+          !records.some((r) => Object.values(r).some((v) => Array.isArray(v)))
+        ) {
+          allProducts = records;
+        } else {
+          allProducts = records.flatMap((rec) => {
+            if (!rec || typeof rec !== "object") return [];
+            // preferisci la proprietà esplicita 'products'
+            if (Array.isArray(rec.products)) return rec.products;
+            // altrimenti cerca la prima proprietà che sia un array di oggetti (es. 'items', 'games', ecc.)
+            const arrProp = Object.keys(rec).find(
+              (k) =>
+                Array.isArray(rec[k]) &&
+                rec[k].length > 0 &&
+                typeof rec[k][0] === "object"
+            );
+            if (arrProp) return rec[arrProp];
+            return [];
+          });
+        }
+
+        console.log("Relatedgames extracted products:", allProducts);
+
+        // rimuovi duplicati per id (se presenti)
+        const unique = allProducts.filter(
+          (v, i, a) => v && v.id && a.findIndex((x) => x.id === v.id) === i
+        );
+
+        // shuffle sicuro (Fisher-Yates)
+        const shuffle = (arr) => {
+          const a = arr.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        };
+
+        const picked = shuffle(unique).slice(0, 6);
+        setGames(picked);
+      })
+      .catch((err) => {
+        console.error("Errore fetch correlati:", err);
+        setGames([]); // sicurezza UI
+      });
+  }, [categoryId]);
+
+  // chunk per il carosello
   const chunkArray = (arr, size) => {
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -29,6 +99,12 @@ export default function Relatedgames({ categoryId }) {
   };
 
   const slides = chunkArray(games, 3);
+
+  if (games.length === 0) {
+    return (
+      <p className="text-center my-4">Nessun prodotto correlato trovato.</p>
+    );
+  }
 
   return (
     <div>
@@ -91,7 +167,6 @@ export default function Relatedgames({ categoryId }) {
           ))}
         </div>
 
-        {/* Controlli */}
         <button
           className="carousel-control-prev"
           type="button"

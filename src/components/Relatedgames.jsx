@@ -2,21 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Relatedgames({ categoryId }) {
-  const [categories, setCategorries] = useState([]);
+  const [games, setGames] = useState([]);
 
   const url_categories = `http://localhost:3030/api/categories/${categoryId}`;
-  const img = "/img/logo_sito_-removebg-preview.png";
 
   useEffect(() => {
+    if (!categoryId) return;
+
     fetch(url_categories)
       .then((res) => res.json())
       .then((data) => {
+        // Mischia e prendi massimo 6
         const shuffled = data.sort(() => 0.5 - Math.random());
-        setCategorries(shuffled.slice(0, 6));
-      });
-  }, []);
+        setGames(shuffled.slice(0, 6));
+      })
+      .catch((err) => console.error("Errore fetch correlati:", err));
+  }, [categoryId, url_categories]);
 
-  // Funzione per dividere l'array in gruppi da 3
+  // Funzione per dividere array in gruppi
   const chunkArray = (arr, size) => {
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -25,7 +28,7 @@ export default function Relatedgames({ categoryId }) {
     return result;
   };
 
-  const slides = chunkArray(categories, 3);
+  const slides = chunkArray(games, 3);
 
   return (
     <div>
@@ -45,7 +48,9 @@ export default function Relatedgames({ categoryId }) {
                   <div key={game.id} className="col-md-4">
                     <div className="card bg-light h-100 mb-3">
                       <img
-                        src={img}
+                        src={`/img/${
+                          game.img || "logo_sito_-removebg-preview.png"
+                        }`}
                         alt={game.name}
                         className="mx-auto d-block mt-3"
                         style={{
@@ -71,7 +76,10 @@ export default function Relatedgames({ categoryId }) {
                             <span className="fw-bold">€{game.price}</span>
                           )}
                         </p>
-                        <Link to="/" className="btn btn-primary">
+                        <Link
+                          to={`/products/${game.id}`}
+                          className="btn btn-primary"
+                        >
                           Vai al gioco
                         </Link>
                       </div>

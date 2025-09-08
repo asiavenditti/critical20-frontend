@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Relatedgames({ categoryId }) {
   const [games, setGames] = useState([]);
-  const img = "/img/logo_sito_-removebg-preview.png"
+  const img = "/img/logo_sito_-removebg-preview.png";
 
   useEffect(() => {
     // reset quando cambia categoryId
@@ -154,7 +154,10 @@ export default function Relatedgames({ categoryId }) {
                           )}
                         </p>
                         {/* Link al dettaglio o azione */}
-                        <Link to={`/products/${game.id}`} className="btn btn-primary">
+                        <Link
+                          to={`/products/${game.id}`}
+                          className="btn btn-primary"
+                        >
                           Vai al gioco
                         </Link>
                       </div>

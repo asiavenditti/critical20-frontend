@@ -46,12 +46,12 @@ export default function Jumbotron() {
                                         style={{
                                             backgroundColor: "#fadb7f",
                                             border: "solid 1px",
-                                            borderRadius: "20%",
+                                            borderRadius: "20px",
                                             padding: "0.5rem 1rem"
                                         }}
                                         className="mt-3"
                                     >
-                                        Scarica il regolamento
+                                        <a href="/products">Scopri di più..</a>
                                     </button>
                                 </div>
                             </div>
@@ -83,12 +83,12 @@ export default function Jumbotron() {
                                         style={{
                                             backgroundColor: "#fadb7f",
                                             border: "solid 1px",
-                                            borderRadius: "20%",
+                                            borderRadius: "20px",
                                             padding: "0.5rem 1rem"
                                         }}
                                         className="mt-4"
                                     >
-                                        Scopri di più
+                                        <a href="/products">Scopri di più..</a>
                                     </button>
                                 </div>
                             </div>

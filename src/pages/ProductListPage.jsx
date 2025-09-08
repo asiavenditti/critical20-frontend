@@ -41,7 +41,7 @@ export default function ProductListPage() {
                     >
                         <div className="card bg-light products-card h-100">
                             <img
-                                src={img}
+                                src={game.file_paths[0]}
                                 alt={game.name}
                                 className="mx-auto d-block mt-3"
                                 style={{

@@ -47,7 +47,7 @@ export default function DetailsProductPage() {
             <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
               <img
                 // src={`/img/${game.img}`}
-                src={img}
+                src={game.file_paths[0]}
                 className="img-fluid rounded"
                 alt={game.name}
                 style={{

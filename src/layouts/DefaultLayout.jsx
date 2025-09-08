@@ -2,12 +2,14 @@ import React from 'react'
 import { Outlet } from 'react-router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import ModalEmail from '../components/ModalEmail'
 
 
 export default function DefaultLayout() {
     return (
         <>
             <Header />
+            <ModalEmail />
             <Outlet />
             <Footer />
         </>

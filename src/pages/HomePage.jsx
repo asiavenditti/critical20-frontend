@@ -1,6 +1,7 @@
 import Jumbotron from '../components/Jumbotron';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ModalEmail from "../components/ModalEmail";
 
 export default function HomePage() {
     const [games, setGames] = useState([]);

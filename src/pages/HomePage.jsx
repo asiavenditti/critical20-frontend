@@ -6,7 +6,6 @@ import ModalEmail from "../components/ModalEmail";
 export default function HomePage() {
     const [games, setGames] = useState([]);
     const url = "http://localhost:3030/api/products/new";
-    const img = "/img/logo_sito_-removebg-preview.png";
 
     useEffect(() => {
         fetch(url)
@@ -19,7 +18,7 @@ export default function HomePage() {
 
     return (
         <div>
-            {/* Logo centrale*/}
+            {/* Logo centrale */}
             <a className="d-flex justify-content-center sfondo positionR" href="#">
                 <img
                     src="img/logo_sito_-removebg-preview.png"
@@ -29,7 +28,7 @@ export default function HomePage() {
                 />
             </a>
 
-            {/* Jumbotron senza margini extra */}
+            {/* Jumbotron */}
             <Jumbotron />
 
             {/* Sezione nuovi arrivi */}
@@ -41,46 +40,52 @@ export default function HomePage() {
                             key={game.id}
                             className="col-12 col-sm-12 col-md-6 col-lg-3 mb-4 d-flex"
                         >
-                            <div
-                                className="card bg-light w-100 d-flex flex-column custom-card-padding"
-                            >
-                                <img
-                                    src={game.file_paths[0]}
-                                    alt={game.name}
-                                    className="mx-auto d-block mt-3"
-                                    style={{
-                                        width: "150px",
-                                        height: "150px",
-                                        objectFit: "cover",
-                                    }}
-                                />
-                                <div className="card-body d-flex flex-column text-center">
-                                    <h5 className="card-title">{game.name}</h5>
-                                    <p className="card-text">{game.description}</p>
-                                    <p className="card-text">
+                            <Link to={`/products/${game.id}`} className="text-decoration-none w-100">
+                                <div className="card bg-light custom-card w-100 d-flex flex-column position-relative overflow-hidden p-3">
+                                    <img
+                                        src={game.file_paths[0]}
+                                        alt={game.name}
+                                        className="mx-auto d-block"
+                                        style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                                    />
+
+                                    {/* Titolo sempre visibile */}
+                                    <h5 className="card-title text-center mt-2 text-dark">{game.name}</h5>
+
+                                    {/* Prezzo sempre visibile */}
+                                    <p className="card-text text-center fw-bold text-success">
                                         {game.price !== game.original_price ? (
                                             <>
                                                 <span className="text-muted text-decoration-line-through me-2">
                                                     €{game.original_price}
                                                 </span>
-                                                <span className="fw-bold text-success">
-                                                    €{game.price}
-                                                </span>
+                                                €{game.price}
                                             </>
                                         ) : (
-                                            <span className="fw-bold">€{game.price}</span>
+                                            <>€{game.price}</>
                                         )}
                                     </p>
-                                    <div className="mt-auto">
-                                        {/* Link al dettaglio o azione */}
-                                        <Link to={`/products/${game.id}`} className="btn btn-primary">
-                                            Vai al gioco
-                                        </Link>
+
+                                    {/* Descrizione overlay */}
+                                    <div className="description-overlay d-flex justify-content-center align-items-center text-center">
+                                        <p className="text-white">{game.description}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* 🔥 Barra scorrevole fissa in basso */}
+            <div className="wrapper-scrolling-text">
+                <div className="scrolling-text">
+                    <span>
+                        🎲 Nuovi Giochi in arrivo! 🚀 | Offerte speciali fino al 50%! 🔥 | Spedizione gratuita sopra i 50€ 🛒 | Scopri ora 👉
+                    </span>
+                    <span>
+                        🎲 Nuovi Giochi in arrivo! 🚀 | Offerte speciali fino al 50%! 🔥 | Spedizione gratuita sopra i 50€ 🛒 | Scopri ora 👉
+                    </span>
                 </div>
             </div>
         </div>

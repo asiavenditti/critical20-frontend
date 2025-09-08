@@ -22,7 +22,7 @@ export default function Jumbotron() {
                                 {/* IMMAGINE PRINCIPALE */}
                                 <div className="col-12 col-md-5 position-relative mb-4 mb-md-0 text-center">
                                     <img
-                                        src="./img/Ticket_to_Ride_Northern_Lights_box-1024x1024.webp"
+                                        src="./public/img/immagineJumbo.png"
                                         alt="Ticket to Ride"
                                         className="img-fluid rounded"
                                         style={{

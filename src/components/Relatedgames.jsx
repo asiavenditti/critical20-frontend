@@ -127,7 +127,7 @@ export default function Relatedgames({ categoryId }) {
                       <img
                         // src={`/img/${game.img || { img }
                         //   }`}
-                        src={img}
+                        src={game.file_paths[0]}
                         alt={game.name}
                         className="mx-auto d-block mt-3"
                         style={{

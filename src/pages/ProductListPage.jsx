@@ -18,21 +18,21 @@ export default function ProductListPage() {
 
     return (
         <div className="container mt-5">
-            {/* Titolo centrale e con margine */}
-            <div className=''>
-                <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
-                <form class="form-inline my-2 my-lg-0 d-flex m-4 p-4 w-25 ">
-                    <input class="form-control bg-light mr-sm-2"
+            <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
+
+            {/* Filtro allineato a sinistra */}
+            <div className="d-flex justify-content-start mb-4">
+                <form className="d-flex w-100" role="search">
+                    <input
                         type="search"
-                        placeholder="inserisci il tuo gioco..."
+                        className="form-control bg-light w-25"
+                        placeholder="Inserisci il tuo gioco..."
                         aria-label="Search"
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}>
-                    </input>
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </form>
-
             </div>
-
             <div className="row g-4 mb-5">
                 {filteredGames.map((game) => (
                     <div

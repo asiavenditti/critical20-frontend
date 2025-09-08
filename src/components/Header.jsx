@@ -12,7 +12,7 @@ export default function Header() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bgN fixed-top shadow-sm">
+        <nav className="navbar navbar-expand-lg navbar-dark bgN fixed-top shadow-sm text-white">
             <div className="container-fluid d-flex align-items-center justify-content-between">
 
                 {/* Spazio sinistra per bilanciare icone destra su desktop */}

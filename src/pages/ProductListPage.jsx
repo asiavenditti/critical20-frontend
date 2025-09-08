@@ -22,7 +22,7 @@ export default function ProductListPage() {
             <div className=''>
                 <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
                 <form class="form-inline my-2 my-lg-0 d-flex m-4 p-4 w-25 ">
-                    <input class="form-control mr-sm-2"
+                    <input class="form-control bg-light mr-sm-2"
                         type="search"
                         placeholder="inserisci il tuo gioco..."
                         aria-label="Search"

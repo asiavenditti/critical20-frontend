@@ -251,6 +251,12 @@ h6 {
 }
 
 
+a {
+  text-decoration: none;
+  color: #1b152c;
+}
+
+
 /* Padding extra solo per le card in modalità mobile */
 @media (max-width: 767px) {
   .custom-card-padding {

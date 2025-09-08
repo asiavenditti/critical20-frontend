@@ -99,9 +99,14 @@ body {
   transition: fill 0.3s ease;
 }
 
+
+
+
 /* NAVBAR LINKS */
-.nav-custom-link {
-  color: white;
+
+/* link bianchi di default */
+.navbar .nav-link {
+  color: #ffffff !important;
   transition: color 0.3s ease;
 }
 
@@ -128,10 +133,12 @@ body {
   /* link più compatti */
 }
 
+
 .small-navbar .btn {
   padding: 0.3rem 0.8rem;
   font-size: 0.85rem;
 }
+
 
 .Jumbo {
   padding-top: 200px;
@@ -160,7 +167,6 @@ body {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
   font-size: x-large;

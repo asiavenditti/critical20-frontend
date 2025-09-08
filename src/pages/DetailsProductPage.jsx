@@ -47,7 +47,7 @@ export default function DetailsProductPage() {
             <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
               <img
                 // src={`/img/${game.img}`}
-                src={img}
+                src={game.file_paths[0]}
                 className="img-fluid rounded"
                 alt={game.name}
                 style={{
@@ -132,7 +132,9 @@ export default function DetailsProductPage() {
       </div>
       {/* Prodotti correlati */}
       <div className="container mt-5 py-4">
-        <h3 className="text-light mb-4">Ti consigliamo anche...</h3>
+        <h3 className="text-light mb-4 text-center fw-semibold" style={{ fontSize: "1.8rem" }}>
+          Ti consigliamo anche...
+        </h3>
         <Relatedgames categoryId={category} />
       </div>
     </div>

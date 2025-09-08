@@ -1,6 +1,7 @@
 import Jumbotron from '../components/Jumbotron';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ModalEmail from "../components/ModalEmail";
 
 export default function HomePage() {
     const [games, setGames] = useState([]);
@@ -44,7 +45,7 @@ export default function HomePage() {
                                 className="card bg-light w-100 d-flex flex-column custom-card-padding"
                             >
                                 <img
-                                    src={img}
+                                    src={game.file_paths[0]}
                                     alt={game.name}
                                     className="mx-auto d-block mt-3"
                                     style={{

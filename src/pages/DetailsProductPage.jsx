@@ -29,6 +29,11 @@ export default function DetailsProductPage() {
     }
   }, [game]);
 
+  // Scrolla in alto quando cambia l'id
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [id]);
+
   // aggiungenre loader
   if (!game) {
     return <p className="text-center my-5">Caricamento in corso...</p>;

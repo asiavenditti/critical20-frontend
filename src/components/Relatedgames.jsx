@@ -155,7 +155,7 @@ export default function Relatedgames({ categoryId }) {
                         </p>
                         {/* Link al dettaglio o azione */}
                         <Link
-                          to={`/products/${game.id}`}
+                          to={`/products/${game.slug}`}
                           className="btn btn-primary"
                         >
                           Vai al gioco

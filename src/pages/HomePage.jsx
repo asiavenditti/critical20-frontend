@@ -46,6 +46,7 @@ export default function HomePage() {
               key={game.id}
               className="col-12 col-sm-12 col-md-6 col-lg-3 mb-4 d-flex"
             >
+
               <Link
                 to={`/products/${game.slug}`}
                 className="text-decoration-none w-100"

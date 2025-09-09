@@ -4,7 +4,7 @@ export default function PLCardLIst({ game }) {
   return (
     <div
       key={game.id}
-      className="cardlist text-light d-flex align-items-center justify-content-between"
+      className="cardlist card-body text-light d-flex align-items-center justify-content-between"
     >
       <img
         className="cardlist-img-mini"
@@ -13,10 +13,10 @@ export default function PLCardLIst({ game }) {
       />
       <h6>{game.name}</h6>
 
-      <ul>
-        <li>difficoltà</li>
-        <li>età</li>
-        <li>numero giocatori</li>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item">difficoltà</li>
+        <li className="list-group-item">età</li>
+        <li className="list-group-item">numero giocatori</li>
       </ul>
       <Link to={`/products/${game.slug}`} className="btn btn-primary">
         freccia sost

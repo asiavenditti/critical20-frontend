@@ -19,11 +19,11 @@ export default function ProductListPage() {
   const url = "http://localhost:3030/api/products";
   const img = "/img/logo_sito_-removebg-preview.png";
 
+  // fetch
   useEffect(() => {
-    // fetch
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setGames(data));
+      .then((data) => setGames(data.result));
   }, []);
 
   const filteredGames = games.filter((game) =>

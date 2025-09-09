@@ -1,4 +1,6 @@
-export default function PLCardGrid() {
+import { Link } from "react-router-dom";
+
+export default function PLCardGrid({ game }) {
   return (
     <div key={game.id} className="col-12 col-md-6 col-lg-4">
       <div className="card bg-light products-card h-100">

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 // Component
 
@@ -41,7 +40,7 @@ export default function ProductListPage() {
       </div>
       <div className="row g-4 mb-5">
         {filteredGames.map((game) => (
-          <PLCardGrid game={game} />
+          <PLCardGrid game={game} key={game.id} />
 
           //   <div key={game.id} className="col-12 col-md-6 col-lg-4">
           //     <div className="card bg-light products-card h-100">

@@ -311,8 +311,8 @@ a {
   overflow: hidden;
   white-space: nowrap;
   z-index: 9999;
-  padding: 0.75rem 0;
-  font-size: 1.25rem;
+  padding: 0.50rem 0;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -335,4 +335,25 @@ a {
   100% {
     transform: translateX(-50%);
   }
+}
+
+
+.brt {
+  border: none;
+  padding: 4px 7px;
+  border-radius: 20px;
+  background: none;
+  color: white;
+}
+
+.brtb {
+  border: none;
+  padding: 4px 7px;
+  border-radius: 20px;
+  background: none;
+  color: rgb(0, 0, 0);
+}
+
+.brt:hover {
+  color: #fadb7f;
 }

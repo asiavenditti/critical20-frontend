@@ -6,9 +6,20 @@ export default function EmailModal() {
     const [email, setEmail] = useState("");
     const [sendEmail, setSendEmail] = useState(false);
 
-    // Mostra la modale all'apertura del sito
+
+
+    // Mostra la modale alla prima apertura del sito
     useEffect(() => {
-        setShow(true);
+        // const hasVisited + local storage 
+        const hasVisited = localStorage.getItem('hasVisited')
+
+        // se l'utente non ha mai visitato, mostro la modale
+        if (!hasVisited) {
+            setShow(true)
+            // registriamo la vista dell'utente con "true"
+            localStorage.setItem('hasVisited', 'true')
+        }
+
     }, []);
 
     // Quando sendEmail diventa true parte la chiamata API

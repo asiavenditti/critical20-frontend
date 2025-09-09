@@ -124,12 +124,20 @@ export default function DetailsProductPage() {
 
               {/* Prezzo */}
               <div className="mt-3">
-                <p className="text-muted text-decoration-line-through mb-0">
-                  Prezzo originale: €{game.original_price}
-                </p>
-                <h4 className="text-danger fw-bold">
-                  Prezzo scontato: €{game.price}
-                </h4>
+                {game.price !== game.original_price ? (
+                  <>
+                    <span className="text-muted text-decoration-line-through me-2">
+                      Prezzo pieno: €{game.original_price}
+                    </span>
+                    <h4 className="fw-bold text-danger">
+                      Prezzo scontato: €{game.price}
+                    </h4>
+                  </>
+                ) : (
+                  <h4 className="fw-bold">
+                    Prezzo: €{game.price}
+                  </h4>
+                )}
                 <button className="btn btn-dark btn-lg mt-2 w-100">
                   🛒 Aggiungi al carrello
                 </button>

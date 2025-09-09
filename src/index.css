@@ -1,168 +1,6 @@
 @import "bootstrap";
 
-.flex {
-  display: flex;
-  justify-content: end;
-  margin-right: 4rem;
-}
-
-.back-color {
-  background-color: lightskyblue;
-}
-
-.logo {
-  position: relative;
-  bottom: 85px;
-  right: 20px;
-}
-
-.logoCentro {
-  position: relative;
-  bottom: 260px;
-  width: 800px;
-}
-
-body {
-  background-color: #1b152c;
-}
-
-.logoM {
-  position: relative;
-  top: -60px;
-  right: 200px;
-  width: 180px;
-  border: 1px solid white;
-  border-radius: 0 0 30% 30%;
-}
-
-.container img {
-  width: 200px;
-  display: flex;
-  justify-content: center;
-}
-
-.sfondo {
-  background-image: url(img/D&D\ sfondo.jpg);
-  background-size: cover;
-}
-
-.SecCard {
-  padding-bottom: 400px;
-}
-
-.carousel-custom {
-  max-width: 800px;
-  max-height: 400px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-.carousel-custom img {
-  object-fit: cover;
-  height: 400px;
-  border: white solid;
-}
-
-
-/* HEADER */
-
-.navbar .icon-link {
-  color: white;
-  /* colore base */
-  transition: color 0.3s ease;
-}
-
-.navbar .icon-link:hover,
-.navbar .icon-link:focus {
-  color: #fadb7f !important;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Hover */
-
-/* Colore giallo per link attivo */
-.navbar .nav-link.active {
-  color: #fadb7f !important;
-}
-
-/* Hover effetto giallo */
-.navbar .nav-link:hover {
-  color: #fadb7f !important;
-}
-
-
-
-.icon-hover-gold:hover svg {
-  fill: #fadb7f;
-  transition: fill 0.3s ease;
-}
-
-
-
-
-/* NAVBAR LINKS */
-
-/* link bianchi di default */
-.navbar .nav-link {
-  color: #ffffff !important;
-  transition: color 0.3s ease;
-}
-
-.nav-custom-link:hover,
-.nav-custom-link:focus {
-  color: #fadb7f;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Navbar compatta */
-.small-navbar {
-  padding: 0.3rem 1rem;
-  font-size: 0.9rem;
-}
-
-.small-navbar .navbar-brand img {
-  height: 40px;
-  /* logo piccolo */
-}
-
-.small-navbar .nav-link {
-  padding: 0.4rem 0.8rem;
-  /* link più compatti */
-}
-
-
-.small-navbar .btn {
-  padding: 0.3rem 0.8rem;
-  font-size: 0.85rem;
-}
-
-
-.Jumbo {
-  padding-top: 200px;
-  padding-bottom: 100px;
-}
-
-.positionR {
-  position: relative;
-}
-
-.positionA {
-  position: relative;
-  top: 200px;
-  width: 400px;
-  height: 400px;
-  z-index: 2;
-}
-
-.bgN {
-  background-color: #151726;
-  color: white;
-}
-
-/* All h title Font Famili  */
+/* All h title Font Family  */
 
 h1,
 h2,
@@ -171,79 +9,6 @@ h5,
 h6 {
   font-size: x-large;
   font-family: Cinzel;
-}
-
-
-
-/* FOOTER */
-
-.footer {
-  background-color: #1c1f2e;
-  color: white;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
-  font-family: system-ui, sans-serif;
-  font-size: 0.95rem;
-}
-
-.footer-section-title {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  color: #ffffff;
-}
-
-.footer-link {
-  display: block;
-  color: #cccccc;
-  text-decoration: none;
-  padding: 0.25rem 0;
-  transition: color 0.2s ease;
-  font-family: inherit;
-}
-
-.footer-link:hover {
-  color: #fadb7f;
-  text-decoration: none;
-}
-
-.footer-social-list {
-  padding-left: 0;
-  margin-bottom: 1rem;
-}
-
-.footer-social-list li {
-  margin-bottom: 0.75rem;
-  list-style: none;
-}
-
-.footer-social {
-  color: #ffffff;
-  font-size: 1.25rem;
-  display: inline-block;
-  transition: color 0.3s ease;
-}
-
-.footer-social:hover {
-  color: #fadb7f;
-}
-
-.footer-divider {
-  border-color: #444;
-  margin: 2rem 0 1rem;
-}
-
-.footer-copy {
-  font-size: 0.85rem;
-  margin: 0;
-  font-family: inherit;
-}
-
-.footer ul {
-  padding-left: 0;
-  text-align: center;
 }
 
 .card {
@@ -256,12 +21,10 @@ h6 {
   width: 70%;
 }
 
-
 a {
   text-decoration: none;
   color: #1b152c;
 }
-
 
 /* Padding extra solo per le card in modalità mobile */
 @media (max-width: 767px) {
@@ -298,8 +61,6 @@ a {
 .custom-card:hover .description-overlay {
   opacity: 1;
 }
-
-
 
 .wrapper-scrolling-text {
   position: fixed;

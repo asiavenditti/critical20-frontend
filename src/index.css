@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+/* Root  */
+#root {
+  background-color: #1b152c;
+}
+
 /* All h title Font Family  */
 
 h1,

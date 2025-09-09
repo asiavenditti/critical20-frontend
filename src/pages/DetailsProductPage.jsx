@@ -5,20 +5,23 @@ import { useParams } from "react-router-dom";
 import Relatedgames from "../components/Relatedgames";
 
 export default function DetailsProductPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [game, setGame] = useState(null);
   const [category, setCategory] = useState(null);
   const img = "/img/logo_sito_-removebg-preview.png"
 
-  const url = `http://localhost:3030/api/products/${id}`;
+  const url = `http://localhost:3030/api/products/${slug}`;
 
   // Fetch product
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setGame(data[0]))
+      .then((data) => {
+        setGame(data)
+        console.log(data)
+      })
       .catch((err) => console.error("Errore fetch:", err));
-  }, [id, url]);
+  }, [slug, url]);
 
   // Imposta la prima categoria
   useEffect(() => {
@@ -32,7 +35,7 @@ export default function DetailsProductPage() {
   // Scrolla in alto quando cambia l'id
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
+  }, [slug]);
 
   // aggiungenre loader
   if (!game) {

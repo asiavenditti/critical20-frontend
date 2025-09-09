@@ -1,0 +1,10 @@
+/* Immagine Card list mini  */
+.container img {
+  width: 150px;
+}
+
+.cardlist {
+  margin: 0 auto;
+  width: 70%;
+  border: solid;
+}

@@ -72,7 +72,7 @@ export default function ProductListPage() {
                                 </p>
 
                                 {/* Link al dettaglio o azione */}
-                                <Link to={`/products/${game.id}`} className="btn btn-primary">
+                                <Link to={`/products/${game.slug}`} className="btn btn-primary">
                                     Vai al gioco
                                 </Link>
                             </div>

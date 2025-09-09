@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,13 +8,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Cart from './Cart';
 import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 
-export default function Header() {
-    const closeMenu = () => {
-        const collapse = document.getElementById('navbarEcommerce');
-        if (collapse && collapse.classList.contains('show')) {
-            collapse.classList.remove('show');
-        }
-    };
+// Style
+import "../style/Headerstyle.css";
+
 
     return (
         <>

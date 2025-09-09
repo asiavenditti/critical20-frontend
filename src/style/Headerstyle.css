@@ -1,0 +1,152 @@
+@import "bootstrap";
+
+.flex {
+  display: flex;
+  justify-content: end;
+  margin-right: 4rem;
+}
+
+.back-color {
+  background-color: lightskyblue;
+}
+
+/* Logo */
+.logo {
+  position: relative;
+  bottom: 85px;
+  right: 20px;
+}
+
+.logoCentro {
+  position: relative;
+  bottom: 260px;
+  width: 800px;
+}
+
+.logoM {
+  position: relative;
+  top: -60px;
+  right: 200px;
+  width: 180px;
+  border: 1px solid white;
+  border-radius: 0 0 30% 30%;
+}
+
+.container img {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.sfondo {
+  background-image: url(img/D&D\ sfondo.jpg);
+  background-size: cover;
+}
+
+.SecCard {
+  padding-bottom: 400px;
+}
+
+.carousel-custom {
+  max-width: 800px;
+  max-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-custom img {
+  object-fit: cover;
+  height: 400px;
+  border: white solid;
+}
+
+/* HEADER */
+
+.navbar .icon-link {
+  color: white;
+  /* colore base */
+  transition: color 0.3s ease;
+}
+
+.navbar .icon-link:hover,
+.navbar .icon-link:focus {
+  color: #fadb7f !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hover */
+
+/* Colore giallo per link attivo */
+.navbar .nav-link.active {
+  color: #fadb7f !important;
+}
+
+/* Hover effetto giallo */
+.navbar .nav-link:hover {
+  color: #fadb7f !important;
+}
+
+.icon-hover-gold:hover svg {
+  fill: #fadb7f;
+  transition: fill 0.3s ease;
+}
+
+/* NAVBAR LINKS */
+
+/* link bianchi di default */
+.navbar .nav-link {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
+
+.nav-custom-link:hover,
+.nav-custom-link:focus {
+  color: #fadb7f;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Navbar compatta */
+.small-navbar {
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+}
+
+.small-navbar .navbar-brand img {
+  height: 40px;
+  /* logo piccolo */
+}
+
+.small-navbar .nav-link {
+  padding: 0.4rem 0.8rem;
+  /* link più compatti */
+}
+
+.small-navbar .btn {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.Jumbo {
+  padding-top: 200px;
+  padding-bottom: 100px;
+}
+
+.positionR {
+  position: relative;
+}
+
+.positionA {
+  position: relative;
+  top: 200px;
+  width: 400px;
+  height: 400px;
+  z-index: 2;
+}
+
+.bgN {
+  background-color: #151726;
+  color: white;
+}

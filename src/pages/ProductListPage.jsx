@@ -12,6 +12,10 @@ import PLCardList from "../components/PLCardLIst";
 export default function ProductListPage() {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // button vieus
+  const [grid, setGrid] = useState(true);
+
   const url = "http://localhost:3030/api/products";
   const img = "/img/logo_sito_-removebg-preview.png";
 
@@ -43,16 +47,24 @@ export default function ProductListPage() {
           />
         </form>
       </div>
+      {/* Button Vieus */}
+      <div>
+        <button onClick={() => setGrid(true)}> vista griglia </button>
+        <button onClick={() => setGrid(false)}> vista lista </button>
+      </div>
+
       <div className="row g-4 mb-5">
-        {filteredGames.map((game) => (
-          <PLCardList game={game} key={game.id} />
-        ))}
+        <div className={grid ? "grid" : "list"}>
+          {/* map delle card */}
+          {filteredGames.map((game) =>
+            grid ? (
+              <PLCardGrid game={game} key={game.id} />
+            ) : (
+              <PLCardList game={game} key={game.id} />
+            )
+          )}
+        </div>
       </div>
     </div>
   );
 }
-
-// {
-//   /* // Card Griglia
-//             <PLCardGrid game={game} key={game.id} />*/
-// }

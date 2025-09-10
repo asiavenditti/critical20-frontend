@@ -32,6 +32,11 @@ export default function ProductListPage() {
   const url_base = "http://localhost:3030/api/products";
   const img = "/img/logo_sito_-removebg-preview.png";
 
+  /*
+  function setCasa(tipologia) {
+    const casa=tipologia 
+  }*/
+
   function build_url() {
     const Params = new URLSearchParams();
     if (searchTerm) {
@@ -64,11 +69,11 @@ export default function ProductListPage() {
     fetch(final_url)
       .then((res) => res.json())
       .then((data) => setGames(data.results), setTotalpages(data.totalPages));
-  }, []);
+  }, [category, editor, age, players, difficulty, sort, searchTerm]);
 
-  const filteredGames = games.filter((game) =>
-    game.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteredGames = games.filter((game) =>
+  //   game.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   //Filtro difficoltà
 
@@ -81,8 +86,11 @@ export default function ProductListPage() {
             <input
               className="form-check-input"
               type="checkbox"
-              defaultValue=""
-              onChange=""
+              value="facile"
+              onChange={(e) => {
+                const value = e.target.value;
+                setDifficulty(value);
+              }}
               id="checkDefault"
             />
             <label className="form-check-label" htmlFor="checkDefault">
@@ -93,7 +101,11 @@ export default function ProductListPage() {
             <input
               className="form-check-input"
               type="checkbox"
-              defaultValue=""
+              value="medio"
+              onChange={(e) => {
+                const value = e.target.value;
+                setDifficulty(value);
+              }}
               id="checkChecked"
               defaultChecked=""
             />
@@ -105,7 +117,11 @@ export default function ProductListPage() {
             <input
               className="form-check-input"
               type="checkbox"
-              defaultValue=""
+              value="difficile"
+              onChange={(e) => {
+                const value = e.target.value;
+                setDifficulty(value);
+              }}
               id="checkChecked"
               defaultChecked=""
             />

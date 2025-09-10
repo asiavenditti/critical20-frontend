@@ -66,14 +66,14 @@ export default function ProductListPage() {
   // fetch
   useEffect(() => {
     const final_url = build_url();
+    console.log(final_url);
+
     fetch(final_url)
       .then((res) => res.json())
-      .then((data) => setGames(data.results), setTotalpages(data.totalPages));
+      .then((data) => {
+        setGames(data.results), setTotalpages(data.totalPages);
+      });
   }, [category, editor, age, players, difficulty, sort, searchTerm]);
-
-  // const filteredGames = games.filter((game) =>
-  //   game.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   //Filtro difficoltà
 
@@ -158,7 +158,7 @@ export default function ProductListPage() {
         <div>
           <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
             {/* map delle card */}
-            {filteredGames.map((game) =>
+            {games.map((game) =>
               grid ? (
                 <PLCardGrid game={game} key={game.id} />
               ) : (

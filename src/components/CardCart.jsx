@@ -1,28 +1,21 @@
 import React, { useState } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ModalCheckout from "./modalCheckout";
+import ModalCheckout from "./ModalCheckout";
 
 export default function CardCart({ productCart = [], setProductCart = () => { } }) {
     const [showModal, setShowModal] = useState(false);
 
-    // Rimuovi un prodotto dal carrello
     const rimuoviDalCarrello = (indexToRemove) => {
-        const nuovoCarrello = productCart.filter((_, i) => i !== indexToRemove);
-        setProductCart(nuovoCarrello);
+        setProductCart(productCart.filter((_, i) => i !== indexToRemove));
     };
 
-    // Svuota carrello
-    const svuotaCarrello = () => {
-        setProductCart([]);
-    };
+    const svuotaCarrello = () => setProductCart([]);
 
-    // Totale
     const totale = productCart
-        .reduce((acc, prodotto) => acc + parseFloat(prodotto.price) * (prodotto.quantity || 1), 0)
+        .reduce((acc, p) => acc + parseFloat(p.price) * (p.quantity || 1), 0)
         .toFixed(2);
 
-    // Aggiungi o rimuovi quantità
     const aggiornaQuantita = (index, delta) => {
         const aggiornato = [...productCart];
         aggiornato[index].quantity = Math.max(1, (aggiornato[index].quantity || 1) + delta);
@@ -31,33 +24,33 @@ export default function CardCart({ productCart = [], setProductCart = () => { } 
 
     return (
         <>
-            <div className="card mb-4 bg-light">
-                <div className="card-header">Il tuo carrello</div>
+            <div className="card mb-4 bg-light shadow-sm">
+                <div className="card-header fw-bold">🛒 Il tuo carrello</div>
                 <div className="card-body">
                     {productCart.length === 0 ? (
                         <p>Il carrello è vuoto</p>
                     ) : (
-                        productCart.map((prodotto, index) => (
-                            <div className="d-flex justify-content-between align-items-center mb-2" key={index}>
+                        productCart.map((p, index) => (
+                            <div className="d-flex justify-content-between align-items-center mb-3" key={index}>
                                 <div className="d-flex align-items-center">
                                     <img
-                                        className="w-25 me-3"
-                                        src={prodotto.file_paths[0]}
-                                        alt={prodotto.name}
+                                        className="w-25 me-3 rounded"
+                                        src={p.file_paths[0]}
+                                        alt={p.name}
                                     />
                                     <div>
                                         <span className="badge bg-secondary">
-                                            {prodotto.quantity || 1} pezzo/i
+                                            {p.quantity || 1} pezzo/i
                                         </span>
-                                        <div>{prodotto.name}</div>
-                                        <div>€{(prodotto.price * (prodotto.quantity || 1)).toFixed(2)}</div>
+                                        <div>{p.name}</div>
+                                        <div>€ {(p.price * (p.quantity || 1)).toFixed(2)}</div>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <button className="btn btn-sm btn-outline-secondary me-1" onClick={() => aggiornaQuantita(index, -1)}>-</button>
                                     <button className="btn btn-sm btn-outline-secondary me-1" onClick={() => aggiornaQuantita(index, 1)}>+</button>
                                     <button className="btn btn-sm btn-warning" onClick={() => rimuoviDalCarrello(index)}>
-                                        <FontAwesomeIcon icon={faTrash} size="lg" />
+                                        <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </div>
                             </div>
@@ -82,14 +75,13 @@ export default function CardCart({ productCart = [], setProductCart = () => { } 
                 )}
             </div>
 
-            {/* Checkout Modale */}
+            {/* Modale Bootstrap */}
             <ModalCheckout
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
+                show={showModal}
+                handleClose={() => setShowModal(false)}
                 productCart={productCart}
                 setProductCart={setProductCart}
             />
-
         </>
     );
 }

@@ -8,6 +8,7 @@ import DetailsProductPage from "./pages/DetailsProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import CartPage from "./pages/CartPage";
 
+
 function App() {
   const [productCart, setProductCart] = useState(() => {
     const saved = localStorage.getItem("productCart");
@@ -34,6 +35,7 @@ function App() {
           <Route path="/products/:slug" element={<DetailsProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/prova" element={<PaginadiProva />} />
         </Route>
       </Routes>
     </BrowserRouter>

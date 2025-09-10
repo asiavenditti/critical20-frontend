@@ -30,43 +30,88 @@ export default function ProductListPage() {
     game.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  //Filtro difficoltà
+
   return (
-    <div className="container mt-5">
-      <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
-
-
-      {/* Filtro allineato a sinistra */}
-      <div className="d-flex justify-content-start mb-4">
-        <form className="d-flex w-100" role="search">
-          <input
-            type="search"
-            className="form-control bg-light w-25"
-            placeholder="Inserisci il tuo gioco..."
-            aria-label="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </form>
-      </div>
-      {/* Button Vieus */}
-      <div>
-        <button onClick={() => setGrid(true)}> vista griglia </button>
-        <button onClick={() => setGrid(false)}> vista lista </button>
-      </div>
-
-
-      <div>
-        <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
-          {/* map delle card */}
-          {filteredGames.map((game) =>
-            grid ? (
-              <PLCardGrid game={game} key={game.id} />
-            ) : (
-              <PLCardList game={game} key={game.id} />
-            )
-          )}
+    <>
+      {/* Contenitore dei filtri */}
+      <div className="bg-light containerfilter">
+        <div className="difficulty">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              defaultValue=""
+              onChange=""
+              id="checkDefault"
+            />
+            <label className="form-check-label" htmlFor="checkDefault">
+              Facile
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              defaultValue=""
+              id="checkChecked"
+              defaultChecked=""
+            />
+            <label className="form-check-label" htmlFor="checkChecked">
+              Medio
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              defaultValue=""
+              id="checkChecked"
+              defaultChecked=""
+            />
+            <label className="form-check-label" htmlFor="checkChecked">
+              Difficile
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Container Card */}
+      <div className="container mt-5">
+        <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
+
+        {/* Filtro allineato a sinistra */}
+        <div className="d-flex justify-content-start mb-4">
+          <form className="d-flex w-100" role="search">
+            <input
+              type="search"
+              className="form-control bg-light w-25"
+              placeholder="Inserisci il tuo gioco..."
+              aria-label="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
+        </div>
+        {/* Button Vieus */}
+        <div>
+          <button onClick={() => setGrid(true)}> vista griglia </button>
+          <button onClick={() => setGrid(false)}> vista lista </button>
+        </div>
+
+        <div>
+          <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
+            {/* map delle card */}
+            {filteredGames.map((game) =>
+              grid ? (
+                <PLCardGrid game={game} key={game.id} />
+              ) : (
+                <PLCardList game={game} key={game.id} />
+              )
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

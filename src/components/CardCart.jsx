@@ -75,7 +75,7 @@ export default function CardCart({ productCart = [], setProductCart = () => { } 
                 )}
             </div>
 
-            {/* Modale Bootstrap */}
+            {/* Modale sempre montata, show controllato tramite prop */}
             <ModalCheckout
                 show={showModal}
                 handleClose={() => setShowModal(false)}

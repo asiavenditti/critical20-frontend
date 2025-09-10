@@ -1,29 +1,24 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-// Component
+import { useParams, useOutletContext } from "react-router-dom";
 import Relatedgames from "../components/Relatedgames";
 
 export default function DetailsProductPage() {
+  const { productCart, setProductCart } = useOutletContext();
   const { slug } = useParams();
   const [game, setGame] = useState(null);
   const [category, setCategory] = useState(null);
-  const img = "/img/logo_sito_-removebg-preview.png"
 
   const url = `http://localhost:3030/api/products/${slug}`;
 
-  // Fetch product
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setGame(data)
-        console.log(data)
+        setGame(data);
       })
       .catch((err) => console.error("Errore fetch:", err));
   }, [slug, url]);
 
-  // Imposta la prima categoria
   useEffect(() => {
     if (game?.id_category?.length > 0) {
       setCategory(Number(game.id_category[0]));
@@ -32,29 +27,35 @@ export default function DetailsProductPage() {
     }
   }, [game]);
 
-  // Scrolla in alto quando cambia l'id
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
 
-  // aggiungenre loader
   if (!game) {
     return <p className="text-center my-5">Caricamento in corso...</p>;
   }
 
+  const aggiungiAlCarrello = () => {
+    const existingIndex = productCart.findIndex(p => p.id === game.id);
+
+    if (existingIndex !== -1) {
+      // Prodotto già presente, incremento quantity
+      const newCart = [...productCart];
+      newCart[existingIndex].quantity += 1;
+      setProductCart(newCart);
+    } else {
+      // Nuovo prodotto, aggiungo con quantity = 1
+      setProductCart([...productCart, { ...game, quantity: 1 }]);
+    }
+  };
+
   return (
     <div className="container">
       <div className="containercard my-5 py-5">
-        {/* Product Card  */}
-        <div
-          className="card shadow-lg border-0 rounded-4 overflow-hidden "
-          style={{ backgroundColor: "#f9f9f9", color: "#222" }}
-        >
+        <div className="card shadow-lg border-0 rounded-4 overflow-hidden" style={{ backgroundColor: "#f9f9f9", color: "#222" }}>
           <div className="row g-0">
-            {/* Immagine */}
             <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
               <img
-                // src={`/img/${game.img}`}
                 src={game.file_paths[0]}
                 className="img-fluid rounded"
                 alt={game.name}
@@ -66,42 +67,26 @@ export default function DetailsProductPage() {
               />
             </div>
 
-            {/* Info */}
             <div className="col-md-7 p-4 d-flex flex-column justify-content-between">
               <div>
                 <h2 className="fw-bold mb-3">{game.name}</h2>
 
                 <div className="mb-2">
-                  <span className="badge bg-secondary me-2">
-                    Età: {game.age}+
-                  </span>
-                  <span className="badge bg-secondary me-2">
-                    Giocatori: {game.players}
-                  </span>
-                  <span className="badge bg-secondary me-2">
-                    Durata: {game.duration}'
-                  </span>
-                  <span className="badge bg-secondary me-2">
-                    Lingua: {game.language}
-                  </span>
+                  <span className="badge bg-secondary me-2">Età: {game.age}+</span>
+                  <span className="badge bg-secondary me-2">Giocatori: {game.players}</span>
+                  <span className="badge bg-secondary me-2">Durata: {game.duration}'</span>
+                  <span className="badge bg-secondary me-2">Lingua: {game.language}</span>
                 </div>
 
-                <p className="mt-3 mb-1">
-                  <strong>Difficoltà:</strong>{" "}
-                  <span className="badge bg-success text-dark">
-                    {game.difficulty}
-                  </span>
+                <p className="mt-3 mb-1"><strong>Difficoltà:</strong>{" "}
+                  <span className="badge bg-success text-dark">{game.difficulty}</span>
                 </p>
 
-                <p>
-                  <strong>ISBN:</strong> {game.isbn}
-                </p>
+                <p><strong>ISBN:</strong> {game.isbn}</p>
 
                 <hr />
 
-                <p>
-                  <strong>Categorie:</strong>
-                </p>
+                <p><strong>Categorie:</strong></p>
                 <div className="d-flex flex-wrap gap-2">
                   {game.categories?.map((cat, i) => (
                     <span key={i} className="badge rounded-pill bg-primary">
@@ -112,12 +97,9 @@ export default function DetailsProductPage() {
 
                 <hr />
 
-                <p>
-                  <strong>Editore:</strong> {game.editor}
-                </p>
+                <p><strong>Editore:</strong> {game.editor}</p>
                 <p className="w-50">
-                  <strong>Descrizione:</strong>
-                  <br />
+                  <strong>Descrizione:</strong><br />
                   {game.description}
                 </p>
               </div>
@@ -134,11 +116,17 @@ export default function DetailsProductPage() {
                     </h4>
                   </>
                 ) : (
+
                   <h4 className="fw-bold">
                     Prezzo: €{Number(game.price).toFixed(2)}
                   </h4>
+
                 )}
-                <button className="btn btn-dark btn-lg mt-2 w-100">
+
+                <button
+                  className="btn btn-dark btn-lg mt-2 w-100"
+                  onClick={aggiungiAlCarrello}
+                >
                   🛒 Aggiungi al carrello
                 </button>
               </div>
@@ -146,6 +134,7 @@ export default function DetailsProductPage() {
           </div>
         </div>
       </div>
+
       {/* Prodotti correlati */}
       <div className="container mt-5 py-4">
         <h3 className="text-light mb-4 text-center fw-semibold" style={{ fontSize: "1.8rem" }}>

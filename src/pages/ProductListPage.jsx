@@ -23,7 +23,7 @@ export default function ProductListPage() {
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setGames(data.result));
+      .then((data) => setGames(data.results));
   }, []);
 
   const filteredGames = games.filter((game) =>

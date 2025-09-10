@@ -1,172 +1,224 @@
 import { useEffect, useState } from "react";
+// per sincronizzare i filtri con l’URL
+import { useSearchParams } from "react-router-dom"; 
 
-//Style
+// Style
 import "../style/productlistpagestyle.css";
 
-// Component
-//Card Griglia
+// Componenti Card
 import PLCardGrid from "../components/PLCardGrid";
-// Crad Lista
 import PLCardList from "../components/PLCardLIst";
 
 export default function ProductListPage() {
   const [games, setGames] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // set dei filtri
-
-  const [category, setCategory] = useState("");
-  const [editor, setEditor] = useState("");
-  const [age, setAge] = useState("");
-  const [players, setPlayers] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [sort, setSort] = useState("");
-
-  // Pagina più risultati
-  const [page, setPage] = useState(1);
   const [totalpages, setTotalpages] = useState(1);
-
-  // button vieus
   const [grid, setGrid] = useState(true);
 
+  const [categories, setCategories] = useState([]); // categorie dal backend
+
   const url_base = "http://localhost:3030/api/products";
-  const img = "/img/logo_sito_-removebg-preview.png";
 
-  /*
-  function setCasa(tipologia) {
-    const casa=tipologia 
-  }*/
+  // Hook per leggere/scrivere i parametri dall’URL
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  function build_url() {
-    const Params = new URLSearchParams();
-    if (searchTerm) {
-      Params.append("name", searchTerm);
-    }
-    if (category) {
-      Params.append("category", category);
-    }
-    if (editor) {
-      Params.append("editor", editor);
-    }
-    if (age) {
-      Params.append("age", age);
-    }
-    if (players) {
-      Params.append("players", players);
-    }
-    if (difficulty) {
-      Params.append("difficulty", difficulty);
-    }
-    if (sort) {
-      Params.append("sort", sort);
-    }
-    return `${url_base}?${Params.toString()}`;
-  }
+  // Recupero i valori dai parametri dell’URL
+  const searchTerm = searchParams.get("name") || "";
+  const category = searchParams.get("category") || "";
+  const editor = searchParams.get("editor") || "";
+  const age = searchParams.get("age") || "";
+  const players = searchParams.get("players") || "";
+  const difficulty = searchParams.get("difficulty") || "";
+  const sort = searchParams.get("sort") || "";
+  const page = parseInt(searchParams.get("page")) || 1;
 
-  // fetch
+  // Funzione per aggiornare i parametri nell’URL
+  const updateParam = (key, value) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key); // se vuoto, rimuovo il parametro
+      }
+      return params;
+    });
+  };
+
+  // Costruisco l’URL finale per la fetch
+  const build_url = () => {
+    return `${url_base}?${searchParams.toString()}`;
+  };
+
+  // Fetch dei giochi
   useEffect(() => {
     const final_url = build_url();
-    console.log(final_url);
-
     fetch(final_url)
       .then((res) => res.json())
       .then((data) => {
-        setGames(data.results), setTotalpages(data.totalPages);
+        setGames(data.results);
+        setTotalpages(data.totalPages);
       });
-  }, [category, editor, age, players, difficulty, sort, searchTerm]);
+  }, [searchParams]);
 
-  //Filtro difficoltà
+  // Fetch delle categorie (solo una volta)
+  useEffect(() => {
+    fetch("http://localhost:3030/api/categories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data));
+  }, []);
 
   return (
     <>
-      {/* Contenitore dei filtri */}
-      <div className="bg-light containerfilter">
-        <div className="difficulty">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value="facile"
-              onChange={(e) => {
-                const value = e.target.value;
-                setDifficulty(value);
-              }}
-              id="checkDefault"
-            />
-            <label className="form-check-label" htmlFor="checkDefault">
-              Facile
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value="medio"
-              onChange={(e) => {
-                const value = e.target.value;
-                setDifficulty(value);
-              }}
-              id="checkChecked"
-              defaultChecked=""
-            />
-            <label className="form-check-label" htmlFor="checkChecked">
-              Medio
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value="difficile"
-              onChange={(e) => {
-                const value = e.target.value;
-                setDifficulty(value);
-              }}
-              id="checkChecked"
-              defaultChecked=""
-            />
-            <label className="form-check-label" htmlFor="checkChecked">
-              Difficile
-            </label>
-          </div>
-        </div>
-      </div>
-
-      {/* Container Card */}
+      {/* Container principale */}
       <div className="container mt-5">
         <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
 
-        {/* Filtro allineato a sinistra */}
-        <div className="d-flex justify-content-start mb-4">
-          <form className="d-flex w-100" role="search">
-            <input
-              type="search"
-              className="form-control bg-light w-25"
-              placeholder="Inserisci il tuo gioco..."
-              aria-label="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </form>
-        </div>
-        {/* Button Vieus */}
-        <div>
-          <button onClick={() => setGrid(true)}> vista griglia </button>
-          <button onClick={() => setGrid(false)}> vista lista </button>
-        </div>
+        {/* 🔍 FILTRI IN ALTO */}
+        <div className="border p-3 rounded p-3 mb-4">
+          <div className="row g-4">
+            
+            {/* Ricerca per nome */}
+            <div className="col-md-6">
+              <input
+                type="search"
+                className="form-control"
+                placeholder="Cerca gioco..."
+                value={searchTerm}
+                onChange={(e) => updateParam("name", e.target.value)}
+              />
+            </div>
 
-        <div>
-          <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
-            {/* map delle card */}
-            {games.map((game) =>
-              grid ? (
-                <PLCardGrid game={game} key={game.id} />
-              ) : (
-                <PLCardList game={game} key={game.id} />
-              )
-            )}
+
+
+            {/* Editor */}
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Editor..."
+                value={editor}
+                onChange={(e) => updateParam("editor", e.target.value)}
+              />
+            </div>
+
+            {/* Categoria */}
+            {/* <div className="col-md-4">
+              <select
+                className="form-select"
+                value={category}
+                onChange={(e) => updateParam("category", e.target.value)}
+              >
+                <option value="">Tutte le categorie</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div> */}
+
+            {/* Difficoltà */}
+            <div className="col-md-4">
+              <select
+                className="form-select"
+                value={difficulty}
+                onChange={(e) => updateParam("difficulty", e.target.value)}
+              >
+                <option value="">Tutte le difficoltà</option>
+                <option value="facile">Facile</option>
+                <option value="medio">Medio</option>
+                <option value="difficile">Difficile</option>
+              </select>
+            </div>
+
+            {/* Ordinamento */}
+            <div className="col-md-4">
+              <select
+                className="form-select"
+                value={sort}
+                onChange={(e) => updateParam("sort", e.target.value)}
+              >
+                <option value="">Ordina per...</option>
+                <option value="name_asc">Nome A-Z</option>
+                <option value="name_desc">Nome Z-A</option>
+                <option value="price_asc">Prezzo crescente</option>
+                <option value="price_desc">Prezzo decrescente</option>
+              </select>
+            </div>
+
+            {/* Età minima */}
+            <div className="col-md-2 ms-auto">
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Età min."
+                value={age}
+                onChange={(e) => updateParam("age", e.target.value)}
+              />
+            </div>
+
+            {/* Numero giocatori */}
+            <div className="col-md-2 me-auto">
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Giocatori"
+                value={players}
+                onChange={(e) => updateParam("players", e.target.value)}
+              />
+            </div>
           </div>
         </div>
+
+        {/* 🔲 BOTTONI VISTA */}
+        <div className="mt-3 d-flex">
+          <button
+            className={`btn ms-auto ${
+              grid ? "btn-light text-dark" : "btn-outline-light"
+            }`}
+            onClick={() => setGrid(true)}
+          >
+            vista griglia
+          </button>
+          <button
+            className={`btn ms-2 ${
+              !grid ? "btn-light text-dark" : "btn-outline-light"
+            }`}
+            onClick={() => setGrid(false)}
+          >
+            vista lista
+          </button>
+        </div>
+
+        {/* 🎴 LISTA GIOCHI */}
+        <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
+          {games.map((game) =>
+            grid ? (
+              <PLCardGrid game={game} key={game.id} />
+            ) : (
+              <PLCardList game={game} key={game.id} />
+            )
+          )}
+        </div>
+
+        {/* 📄 PAGINAZIONE */}
+        <nav className="mt-5">
+          <ul className="pagination justify-content-center">
+            {Array.from({ length: totalpages }, (_, i) => i + 1).map((num) => (
+              <li
+                key={num}
+                className={`page-item ${page === num ? "active" : ""}`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => updateParam("page", num)}
+                >
+                  {num}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </>
   );

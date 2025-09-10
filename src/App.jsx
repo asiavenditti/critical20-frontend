@@ -35,7 +35,7 @@ function App() {
           <Route path="/products/:slug" element={<DetailsProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/prova" element={<PaginadiProva />} />
+          {/* <Route path="/prova" element={<PaginadiProva />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

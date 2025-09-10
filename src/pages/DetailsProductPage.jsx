@@ -109,14 +109,18 @@ export default function DetailsProductPage() {
                 {game.price !== game.original_price ? (
                   <>
                     <span className="text-muted text-decoration-line-through me-2">
-                      Prezzo pieno: €{game.original_price}
+                      Prezzo pieno: €{Number(game.original_price).toFixed(2)}
                     </span>
                     <h4 className="fw-bold text-danger">
-                      Prezzo scontato: €{game.price}
+                      Prezzo scontato: €{Number(game.price).toFixed(2)}
                     </h4>
                   </>
                 ) : (
-                  <h4 className="fw-bold">Prezzo: €{game.price}</h4>
+
+                  <h4 className="fw-bold">
+                    Prezzo: €{Number(game.price).toFixed(2)}
+                  </h4>
+
                 )}
 
                 <button

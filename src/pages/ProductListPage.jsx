@@ -55,20 +55,21 @@ export default function ProductListPage() {
                                 <h5 className="card-title">{game.name}</h5>
                                 <p className="card-text">{game.description}</p>
                                 <p className="card-text">
-                                    {game.price !== game.original_price ? (
+                                    {Number(game.price) !== Number(game.original_price) ? (
                                         <>
                                             <span className="text-muted text-decoration-line-through me-2">
-                                                €{game.original_price}
+                                                €{Number(game.original_price).toFixed(2)}
                                             </span>
                                             <span className="fw-bold text-success">
-                                                €{game.price}
+                                                €{Number(game.price).toFixed(2)}
                                             </span>
                                         </>
                                     ) : (
                                         <span className="fw-bold">
-                                            €{game.price}
+                                            €{Number(game.price).toFixed(2)}
                                         </span>
                                     )}
+
                                 </p>
 
                                 {/* Link al dettaglio o azione */}

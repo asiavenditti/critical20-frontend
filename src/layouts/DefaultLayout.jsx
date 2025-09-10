@@ -1,17 +1,15 @@
-import React from 'react'
-import { Outlet } from 'react-router'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import ModalEmail from '../components/ModalEmail'
 
+import Cart from "../components/Cart";
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import { Outlet } from "react-router";
 
-export default function DefaultLayout() {
+export default function DefaultLayout({ productCart, setProductCart }) {
     return (
         <>
-            <Header />
-            <ModalEmail />
-            <Outlet />
+            <Header productCart={productCart} setProductCart={setProductCart} />
+            <Outlet context={{ productCart, setProductCart }} />
             <Footer />
         </>
-    )
+    );
 }

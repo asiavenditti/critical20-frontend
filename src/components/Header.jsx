@@ -14,14 +14,13 @@ import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 // Style
 import "../style/Headerstyle.css";
 
-export default function Header() {
-
-  const closeMenu = () => {
-    const collapse = document.getElementById("navbarEcommerce");
-    if (collapse && collapse.classList.contains("show")) {
-      collapse.classList.remove("show");
+export default function Header({ productCart, setProductCart }) {
+    const closeMenu = () => {
+        const collapse = document.getElementById("navbarEcommerce");
+        if (collapse && collapse.classList.contains("show")) {
+            collapse.classList.remove("show");
+        }
     }
-  };
 
 
   return (
@@ -95,6 +94,23 @@ export default function Header() {
               data-bs-target="#offcanvasCart"
               aria-controls="offcanvasCart"
             >
+
+                <div className="offcanvas-header">
+                    <h5 className="offcanvas-title" id="offcanvasCartLabel">Il tuo Carrello</h5>
+                    <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                    />
+                </div>
+                <div className="offcanvas-body">
+                    <Cart productCart={productCart} setProductCart={setProductCart} />
+                </div>
+            </div>
+        </>
+    );
+
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
             </button>
           </div>
@@ -126,4 +142,5 @@ export default function Header() {
       </div>
     </>
   );
+
 }

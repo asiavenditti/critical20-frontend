@@ -62,9 +62,10 @@ export default function EmailModal() {
     };
 
     return (
+
         <Modal show={show} onHide={() => setShow(false)} centered>
             <Modal.Header closeButton>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", justifyContent: 'center', margin: '0 auto' }}>
                     <img
                         src="/img/logo_sito_-removebg-preview.png"
                         alt="Logo"
@@ -91,5 +92,6 @@ export default function EmailModal() {
                 </Form>
             </Modal.Body>
         </Modal>
+
     );
 }

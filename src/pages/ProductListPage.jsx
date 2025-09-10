@@ -34,6 +34,7 @@ export default function ProductListPage() {
     <div className="container mt-5">
       <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
 
+
       {/* Filtro allineato a sinistra */}
       <div className="d-flex justify-content-start mb-4">
         <form className="d-flex w-100" role="search">
@@ -52,6 +53,7 @@ export default function ProductListPage() {
         <button onClick={() => setGrid(true)}> vista griglia </button>
         <button onClick={() => setGrid(false)}> vista lista </button>
       </div>
+
 
       <div>
         <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>

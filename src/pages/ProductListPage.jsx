@@ -13,17 +13,57 @@ export default function ProductListPage() {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // set dei filtri
+
+  const [category, setCategory] = useState("");
+  const [editor, setEditor] = useState("");
+  const [age, setAge] = useState("");
+  const [players, setPlayers] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [sort, setSort] = useState("");
+
+  // Pagina più risultati
+  const [page, setPage] = useState(1);
+  const [totalpages, setTotalpages] = useState(1);
+
   // button vieus
   const [grid, setGrid] = useState(true);
 
-  const url = "http://localhost:3030/api/products";
+  const url_base = "http://localhost:3030/api/products";
   const img = "/img/logo_sito_-removebg-preview.png";
+
+  function build_url() {
+    const Params = new URLSearchParams();
+    if (searchTerm) {
+      Params.append("name", searchTerm);
+    }
+    if (category) {
+      Params.append("category", category);
+    }
+    if (editor) {
+      Params.append("editor", editor);
+    }
+    if (age) {
+      Params.append("age", age);
+    }
+    if (players) {
+      Params.append("players", players);
+    }
+    if (difficulty) {
+      Params.append("difficulty", difficulty);
+    }
+    if (sort) {
+      Params.append("sort", sort);
+    }
+    return `${url_base}?${Params.toString()}`;
+  }
 
   // fetch
   useEffect(() => {
-    fetch(url)
+    const final_url = build_url();
+    fetch(final_url)
       .then((res) => res.json())
-      .then((data) => setGames(data.results));
+      .then((data) => setGames(data.results), setTotalpages(data.totalPages));
   }, []);
 
   const filteredGames = games.filter((game) =>

@@ -13,6 +13,7 @@ import Cart from "./Cart";
 
 // Style
 import "../style/Headerstyle.css";
+import "../style/Modalstyle.css";
 
 export default function Header({ productCart, setProductCart }) {
     const closeMenu = () => {
@@ -20,6 +21,11 @@ export default function Header({ productCart, setProductCart }) {
         if (collapse && collapse.classList.contains("show")) {
             collapse.classList.remove("show");
         }
+    };
+
+    // Calcola la quantità totale degli articoli nel carrello
+    const getTotalQuantity = (cart) => {
+        return cart.reduce((total, item) => total + (item.quantity || 1), 0);
     };
 
     return (
@@ -83,9 +89,9 @@ export default function Header({ productCart, setProductCart }) {
                         >
                             <FontAwesomeIcon icon={faShoppingCart} size="lg" />
                             {/* Badge quantità */}
-                            {productCart.length > 0 && (
-                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {productCart.length}
+                            {getTotalQuantity(productCart) > 0 && (
+                                <span className="position-absolute top-6 start-115 translate-middle badge rounded-pill bg-danger" style={{ top: '6px' }}>
+                                    {getTotalQuantity(productCart)}
                                 </span>
                             )}
                         </button>

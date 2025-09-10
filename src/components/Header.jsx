@@ -11,13 +11,14 @@ import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 // Style
 import "../style/Headerstyle.css";
 
-export default function Header() {
+export default function Header({ productCart, setProductCart }) {
     const closeMenu = () => {
         const collapse = document.getElementById("navbarEcommerce");
         if (collapse && collapse.classList.contains("show")) {
             collapse.classList.remove("show");
         }
-    };
+    }
+
 
 
     return (
@@ -92,7 +93,7 @@ export default function Header() {
                     />
                 </div>
                 <div className="offcanvas-body">
-                    <Cart />
+                    <Cart productCart={productCart} setProductCart={setProductCart} />
                 </div>
             </div>
         </>

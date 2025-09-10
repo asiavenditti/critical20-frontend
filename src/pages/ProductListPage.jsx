@@ -46,7 +46,7 @@ export default function ProductListPage() {
                                 className="mx-auto d-block mt-3"
                                 style={{
                                     width: "150px",
-                                    height: "150px",
+                                    // height: "150px",
                                     objectFit: "cover",
                                 }}
                             />

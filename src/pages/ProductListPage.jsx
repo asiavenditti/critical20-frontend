@@ -53,8 +53,8 @@ export default function ProductListPage() {
         <button onClick={() => setGrid(false)}> vista lista </button>
       </div>
 
-      <div className="row g-4 mb-5">
-        <div className={grid ? "grid" : "list"}>
+      <div>
+        <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
           {/* map delle card */}
           {filteredGames.map((game) =>
             grid ? (

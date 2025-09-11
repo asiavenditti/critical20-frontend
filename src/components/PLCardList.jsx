@@ -9,7 +9,7 @@ export default function PLCardLIst({ game }) {
     <div className="card mb-4">
       <div
         key={game.id}
-        className="cardlist card-body text-dark d-flex align-items-center justify-content-between"
+        className="cardlist  card-body text-dark d-flex align-items-center justify-content-between flex-wrap"
       >
         <img
           className="cardlist-img-mini"

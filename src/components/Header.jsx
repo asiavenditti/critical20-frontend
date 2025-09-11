@@ -89,47 +89,49 @@ export default function Header({
           </div>
 
           <div className="d-flex align-items-center gap-3 ms-auto">
-            {/* Bottone Offcanvas wishlist*/}
-            <button
-              className="brt btn btn-link text-light position-relative"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasCart"
-              aria-controls="offcanvasCart"
-            >
-              <FontAwesomeIcon icon={faHeart} size="lg" />
-              {/* Badge quantità */}
-              {getTotalQuantity(wishlist) > 0 && (
-                <span
-                  className="position-absolute top-6 start-115 translate-middle badge rounded-pill bg-danger"
-                  style={{ top: "6px" }}
-                >
-                  {getTotalQuantity(wishlist)}
-                </span>
-              )}
-            </button>
+            <div>
+              {/* Bottone Offcanvas wishlist*/}
+              <button
+                className="btn btn-link text-light position-relative"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWishlist"
+                aria-controls="offcanvasWishlist"
+              >
+                <FontAwesomeIcon icon={faHeart} size="lg" />
+                {/* Badge quantità */}
+                {getTotalQuantity(wishlist) > 0 && (
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    style={{ fontSize: "0.7rem" }}
+                  >
+                    {getTotalQuantity(wishlist)}
+                  </span>
+                )}
+              </button>
 
-            {/* Offcanvas della wishlist*/}
-            <div
-              className="offcanvas offcanvas-end"
-              style={{ width: "700px" }}
-              tabIndex={-1}
-              id="offcanvasCart"
-              aria-labelledby="offcanvasCartLabel"
-            >
-              <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasCartLabel">
-                  La tua wishlist
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close text-reset"
-                  data-bs-dismiss="offcanvas"
-                  aria-label="Close"
-                />
-              </div>
-              <div className="offcanvas-body">
-                <WishList wishlist={wishlist} setWishlist={setWishlist} />
+              {/* Offcanvas della wishlist*/}
+              <div
+                className="offcanvas offcanvas-end"
+                style={{ width: "700px" }}
+                tabIndex={-1}
+                id="offcanvasWishlist"
+                aria-labelledby="offcanvasWishlistLabel"
+              >
+                <div className="offcanvas-header">
+                  <h5 className="offcanvas-title" id="offcanvasWishlistLabel">
+                    La tua wishlist
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  />
+                </div>
+                <div className="offcanvas-body">
+                  <WishList wishlist={wishlist} setWishlist={setWishlist} />
+                </div>
               </div>
             </div>
 

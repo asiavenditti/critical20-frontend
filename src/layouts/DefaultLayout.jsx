@@ -4,14 +4,26 @@ import Footer from "../components/Footer";
 import ModalEmail from "../components/ModalEmail";
 import { Outlet } from "react-router";
 
-export default function DefaultLayout({ productCart, setProductCart }) {
-    return (
-        <>
-            <Header productCart={productCart} setProductCart={setProductCart} />
-            <Outlet context={{ productCart, setProductCart }} />
-            <Footer />
-            {/*  MONTAGGIO DELLA MODALE */}
-            <ModalEmail />
-        </>
-    );
+export default function DefaultLayout({
+  productCart,
+  setProductCart,
+  wishlist,
+  setWishlist,
+}) {
+  return (
+    <>
+      <Header
+        productCart={productCart}
+        setProductCart={setProductCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      />
+      <Outlet
+        context={{ productCart, setProductCart, wishlist, setWishlist }}
+      />
+      <Footer />
+      {/*  MONTAGGIO DELLA MODALE */}
+      <ModalEmail />
+    </>
+  );
 }

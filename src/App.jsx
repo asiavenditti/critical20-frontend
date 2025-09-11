@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import PageCheckout from "./pages/PageCheckout";
 
 function App() {
+  // Carrello
   const [productCart, setProductCart] = useState(() => {
     const saved = localStorage.getItem("productCart");
     return saved ? JSON.parse(saved) : [];
@@ -19,6 +20,16 @@ function App() {
     localStorage.setItem("productCart", JSON.stringify(productCart));
   }, [productCart]);
 
+  //Wishlist
+  const [wishlist, setWishlist] = useState(() => {
+    const saved = localStorage.getItem("wishlist");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +38,8 @@ function App() {
             <DefaultLayout
               productCart={productCart}
               setProductCart={setProductCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
             />
           }
         >

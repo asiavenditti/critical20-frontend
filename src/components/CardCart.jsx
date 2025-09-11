@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export default function CardCart({
   productCart = [],
-  setProductCart = () => {},
+  setProductCart = () => { },
 }) {
   const rimuoviDalCarrello = (indexToRemove) => {
     setProductCart(productCart.filter((_, i) => i !== indexToRemove));
@@ -27,22 +27,22 @@ export default function CardCart({
 
   return (
     <>
-      <div className="card h-100 mb-4 bg-light shadow-sm">
+      <div className="card bg-light shadow-sm">
         <div className="card-header fw-bold">🛒 Il tuo carrello</div>
-        <div className="card-body">
+        <div className="card-body overflow-auto" style={{ maxHeight: '680px' }}>
           {productCart.length === 0 ? (
             <p>Il carrello è vuoto</p>
           ) : (
             productCart.map((p, index) => (
               <div
-                className="d-flex justify-content-around align-items-center flex-wrap gap-3  p-3 mb-3"
+                className="d-flex justify-content-around align-items-center flex-wrap gap-3  p-3 mb-3 border-modal-cart"
                 key={index}
               >
                 <div className="d-flex justify-content-center align-items-center w-100 ">
                   <div className="d-flex w-100">
                     <div className="">
                       <img
-                        className=" object-fit-contain  me-3 rounded"
+                        className=" object-fit-contain  me-3 rounded img-modal-cart"
                         src={p.file_paths[0]}
                         alt={p.name}
                       />

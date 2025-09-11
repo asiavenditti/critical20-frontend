@@ -57,7 +57,7 @@ export default function MainCheckout() {
               />
             </div>
             <div className="col">
-              <div className="card h-100 ">
+              <div className="card h-100" style={{ height: '680px' }}>   {/* all'occorrenza mettere maxHeight */}
                 <div className="card-body">
                   {message && <p className="text-center fw-bold">{message}</p>}
 
@@ -136,7 +136,7 @@ export default function MainCheckout() {
             </div>
           </div>
         </div>
-      </main>
+      </main >
     </>
   );
 }

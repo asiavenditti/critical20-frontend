@@ -109,30 +109,6 @@ export default function Header({
                   </span>
                 )}
               </button>
-
-              {/* Offcanvas della wishlist*/}
-              <div
-                className="offcanvas offcanvas-end"
-                style={{ width: "700px" }}
-                tabIndex={-1}
-                id="offcanvasWishlist"
-                aria-labelledby="offcanvasWishlistLabel"
-              >
-                <div className="offcanvas-header">
-                  <h5 className="offcanvas-title" id="offcanvasWishlistLabel">
-                    La tua wishlist
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                  />
-                </div>
-                <div className="offcanvas-body">
-                  <WishList wishlist={wishlist} setWishlist={setWishlist} />
-                </div>
-              </div>
             </div>
 
             {/* Bottone Offcanvas  Carrello*/}
@@ -157,6 +133,30 @@ export default function Header({
           </div>
         </div>
       </nav>
+
+      {/* Offcanvas della WishList */}
+      <div
+        className="offcanvas offcanvas-end"
+        style={{ width: "700px" }}
+        tabIndex={-1}
+        id="offcanvasWishlist"
+        aria-labelledby="offcanvasWishlistLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasWishlistLabel">
+            La tua WishList
+          </h5>
+          <button
+            type="button"
+            className="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <div className="offcanvas-body">
+          <WishList wishlist={wishlist} setWishlist={setWishlist} />
+        </div>
+      </div>
 
       {/* Offcanvas del Carrello */}
       <div

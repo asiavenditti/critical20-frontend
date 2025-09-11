@@ -9,7 +9,7 @@
 }
 
 .modal {
-    padding: 2rem;
+    /* padding: 2rem; */
     border-radius: 12px;
     width: 400px;
     max-width: 100%;
@@ -66,8 +66,13 @@
 }
 
 
+.img-modal-cart {
+    width: 140px;
+}
 
-
+.border-modal-cart {
+    border-bottom: 1px solid lightgray;
+}
 
 @keyframes fadeIn {
     from {

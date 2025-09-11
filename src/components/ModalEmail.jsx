@@ -27,7 +27,7 @@ export default function EmailModal() {
         if (sendEmail && email) {
             const sendWelcomeEmail = async () => {
                 try {
-                    const response = await fetch("http://localhost:3030/api/sendEmail", {
+                    const response = await fetch("http://localhost:3030/api/sendEmailWelcome", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ email }),

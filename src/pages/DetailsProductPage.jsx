@@ -101,6 +101,7 @@ export default function DetailsProductPage() {
           <div className="d-flex justify-content-end">
             <div>
               <button
+                type="button"
                 className="btn text-danger border-0"
                 onClick={toggleWishlist}
                 title={

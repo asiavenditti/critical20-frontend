@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+nav {
+  min-height: 80px;
+}
+
 .flex {
   display: flex;
   justify-content: end;

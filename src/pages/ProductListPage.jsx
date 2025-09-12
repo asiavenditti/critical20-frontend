@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 // per sincronizzare i filtri con l’URL
 import { useSearchParams } from "react-router-dom"; 
 
@@ -13,6 +13,7 @@ export default function ProductListPage() {
   const [games, setGames] = useState([]);
   const [totalpages, setTotalpages] = useState(1);
   const [grid, setGrid] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [categories, setCategories] = useState([]); // categorie dal backend
 
@@ -30,6 +31,7 @@ export default function ProductListPage() {
   const difficulty = searchParams.get("difficulty") || "";
   const sort = searchParams.get("sort") || "";
   const page = parseInt(searchParams.get("page")) || 1;
+  const [totalResults, setTotalResults] = useState(0);
 
   // Funzione per aggiornare i parametri nell’URL
   const updateParam = (key, value) => {
@@ -38,7 +40,11 @@ export default function ProductListPage() {
       if (value) {
         params.set(key, value);
       } else {
-        params.delete(key); // se vuoto, rimuovo il parametro
+        params.delete(key);
+      }
+      // resetto la pagina quando cambio filtro
+      if (key !== "page") {
+        params.set("page", 1);
       }
       return params;
     });
@@ -52,11 +58,19 @@ export default function ProductListPage() {
   // Fetch dei giochi
   useEffect(() => {
     const final_url = build_url();
+    setLoading(true);
+
     fetch(final_url)
       .then((res) => res.json())
       .then((data) => {
-        setGames(data.results);
+        if (page === 1) {
+          setGames(data.results); // reset lista
+        } else {
+          setGames((prev) => [...prev, ...data.results]); // append
+        }
         setTotalpages(data.totalPages);
+        setTotalResults(data.total || 0);
+        setLoading(false);
       });
   }, [searchParams]);
 
@@ -67,16 +81,37 @@ export default function ProductListPage() {
       .then((data) => setCategories(data));
   }, []);
 
+  // IntersectionObserver per infinite scroll
+  const observer = useRef();
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && page < totalpages) {
+          // incremento la pagina nell’URL → triggera useEffect
+          setSearchParams((prev) => {
+            const params = new URLSearchParams(prev);
+            params.set("page", page + 1);
+            return params;
+          });
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading, page, totalpages, setSearchParams]
+  );
+
   return (
     <>
-      {/* Container principale */}
       <div className="container mt-5">
         <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
 
         {/* 🔍 FILTRI IN ALTO */}
         <div className="border p-3 rounded p-3 mb-4">
           <div className="row g-4">
-            
             {/* Ricerca per nome */}
             <div className="col-md-6">
               <input
@@ -87,8 +122,6 @@ export default function ProductListPage() {
                 onChange={(e) => updateParam("name", e.target.value)}
               />
             </div>
-
-
 
             {/* Editor */}
             <div className="col-md-6">
@@ -101,21 +134,7 @@ export default function ProductListPage() {
               />
             </div>
 
-            {/* Categoria */}
-            {/* <div className="col-md-4">
-              <select
-                className="form-select"
-                value={category}
-                onChange={(e) => updateParam("category", e.target.value)}
-              >
-                <option value="">Tutte le categorie</option>
-                {categories.map((cat) => (
-                  <option key={cat.id} value={cat.name}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
-            </div> */}
+            {/* Categoria (commentata) */}
 
             {/* Difficoltà */}
             <div className="col-md-4">
@@ -170,8 +189,20 @@ export default function ProductListPage() {
           </div>
         </div>
 
-        {/* 🔲 BOTTONI VISTA */}
+        {/* Messaggi risultati */}
         <div className="mt-3 d-flex">
+          {totalResults > 0 && (
+            <p className="text-light text-center fs-4 fw-semibold mb-0">
+              {totalResults} risultati trovati
+            </p>
+          )}
+          {totalResults === 0 && !loading && (
+            <p className="text-danger text-center fs-4 fw-semibold mb-0">
+              Nessun risultato per la ricerca
+            </p>
+          )}
+
+          {/* Bottoni vista */}
           <button
             className={`btn ms-auto ${
               grid ? "btn-light text-dark" : "btn-outline-light"
@@ -201,24 +232,10 @@ export default function ProductListPage() {
           )}
         </div>
 
-        {/* 📄 PAGINAZIONE */}
-        <nav className="mt-5">
-          <ul className="pagination justify-content-center">
-            {Array.from({ length: totalpages }, (_, i) => i + 1).map((num) => (
-              <li
-                key={num}
-                className={`page-item ${page === num ? "active" : ""}`}
-              >
-                <button
-                  className="page-link"
-                  onClick={() => updateParam("page", num)}
-                >
-                  {num}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/*  Sentinel per infinite scroll */}
+        <div ref={lastElementRef} style={{ height: "40px" }} />
+
+        {loading && <p className="text-center text-light">Caricamento...</p>}
       </div>
     </>
   );

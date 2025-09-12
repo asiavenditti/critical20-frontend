@@ -1,15 +1,40 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-export default function WishList({ wishlist, setWishlist }) {
+import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+export default function WishList({
+  wishlist,
+  setWishlist,
+  setProductCart,
+  productCart,
+}) {
+  const [aggiuntiAlCarrello, setAggiuntiAlCarrello] = useState(false);
   const rimuoviDalCarrello = (indexToRemove) => {
     setWishlist(wishlist.filter((_, i) => i !== indexToRemove));
   };
+
+  function hadleAggiungiAlCarrello() {
+    //setProductCart([...productCart, ...wishlist]); aggiungi la quantitra a 1
+    setProductCart([
+      ...productCart,
+      ...wishlist.map((p) => ({ ...p, quantity: 1 })),
+    ]);
+    setAggiuntiAlCarrello(true);
+    setTimeout(() => {
+      setAggiuntiAlCarrello(false);
+    }, 3000);
+    setWishlist([]);
+  }
 
   const svuotaWishlist = () => setWishlist([]);
 
   return (
     <>
       <div className="card bg-light shadow-sm">
+        {aggiuntiAlCarrello && (
+          <div className="alert alert-success" role="alert">
+            Aggiunto tutto al carrello
+          </div>
+        )}
         <div className="card-header fw-bold">🛒 Wishlits</div>
         <div className="card-body overflow-auto" style={{ maxHeight: "680px" }}>
           {wishlist.length === 0 ? (
@@ -49,6 +74,20 @@ export default function WishList({ wishlist, setWishlist }) {
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
+                    <div>
+                      <button
+                        className="btn btn-sm btn-primary"
+                        //setProductCart([...productCart, p]) con quantita 1
+                        onClick={() =>
+                          setProductCart([
+                            ...productCart,
+                            { ...p, quantity: 1 },
+                          ])
+                        }
+                      >
+                        <FontAwesomeIcon icon={faCartShopping} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -61,6 +100,13 @@ export default function WishList({ wishlist, setWishlist }) {
             <div className="d-flex justify-content-between">
               <button className="btn btn-danger" onClick={svuotaWishlist}>
                 Svuota la wishlist
+              </button>
+
+              <button
+                className="btn btn-primary"
+                onClick={hadleAggiungiAlCarrello}
+              >
+                Aggiungi tutto al carello
               </button>
             </div>
           </div>

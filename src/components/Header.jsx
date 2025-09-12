@@ -154,7 +154,12 @@ export default function Header({
           />
         </div>
         <div className="offcanvas-body">
-          <WishList wishlist={wishlist} setWishlist={setWishlist} />
+          <WishList
+            wishlist={wishlist}
+            setWishlist={setWishlist}
+            productCart={productCart}
+            setProductCart={setProductCart}
+          />
         </div>
       </div>
 

@@ -1,14 +1,19 @@
 import CardCart from "./CardCart";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import ThankYouC from "./ThankYouC";
 
 export default function MainCheckout({ showLink = true }) {
   const { productCart, setProductCart } = useOutletContext();
 
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressShipping, setAddressShipping] = useState("");
+  const [phone, setPhone] = useState("");
   const [discountCode, setDiscountCode] = useState("");
   const [message, setMessage] = useState("");
+  const [ordineEffettuato, setOrdineEffettuato] = useState(false);
 
   // Resetta form quando la modale viene chiusa
 
@@ -25,6 +30,9 @@ export default function MainCheckout({ showLink = true }) {
       status: "paid",
       user_name: userName,
       user_email: userEmail,
+      address: address,
+      address_shipping: addressShipping,
+      phone: phone,
       discount_code: discountCode || null,
       items,
     };
@@ -37,7 +45,7 @@ export default function MainCheckout({ showLink = true }) {
       });
 
       if (!res.ok) throw new Error("Errore durante l'invio dell'ordine");
-
+      setOrdineEffettuato(true);
       setMessage("✅ Ordine inviato con successo!");
       setProductCart([]);
     } catch (error) {
@@ -93,8 +101,8 @@ export default function MainCheckout({ showLink = true }) {
                           type="text"
                           className="form-control"
                           placeholder="Indirizzo di fatturazione"
-                          value={discountCode} // valore indirizzo fatturazione
-                          onChange={(e) => setDiscountCode(e.target.value)}
+                          value={addressShipping} // valore indirizzo fatturazione
+                          onChange={(e) => setAddressShipping(e.target.value)}
                         />
                       </div>
                       <div className="mb-3">
@@ -102,17 +110,17 @@ export default function MainCheckout({ showLink = true }) {
                           type="text"
                           className="form-control"
                           placeholder="Indirizzo di spedizione"
-                          value={discountCode} // valore indirizzo spedizione
-                          onChange={(e) => setDiscountCode(e.target.value)}
+                          value={address} // valore indirizzo spedizione
+                          onChange={(e) => setAddress(e.target.value)}
                         />
                       </div>
                       <div className="mb-3">
                         <input
-                          type="tel"
+                          type="text"
                           className="form-control"
                           placeholder="Numero di telefono"
-                          value={discountCode} // valore numero di telefono
-                          onChange={(e) => setDiscountCode(e.target.value)}
+                          value={phone} // valore numero di telefono
+                          onChange={(e) => setPhone(e.target.value)}
                         />
                       </div>
                       <div className="mb-3 py-3 border-top border-black">
@@ -137,7 +145,24 @@ export default function MainCheckout({ showLink = true }) {
                 </div>
               </div>
             </div>
+            <ThankYouC></ThankYouC>
           </div>
+          {ordineEffettuato && (
+            <div className="container rounded bg-black my-5 ">
+              <div className="text-white">
+                {" "}
+                <h6 className="text-center ">
+                  Ordine effettuato con successo!
+                </h6>
+                <p className="text-center ">
+                  Riceverai un email di conferma con il riepilogo dell'ordine
+                </p>{" "}
+              </div>
+            </div>
+          )}
+          {!ordineEffettuato && (
+            <h6 className="text-center text-white">Ordine non effettuato</h6>
+          )}
         </div>
       </main>
     </>

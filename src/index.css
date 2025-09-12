@@ -127,3 +127,14 @@ a {
 .width_96px {
   width: 96px;
 }
+
+/* creare animazione che rotea */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

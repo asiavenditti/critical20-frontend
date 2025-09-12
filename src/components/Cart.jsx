@@ -1,8 +1,14 @@
 import React from "react";
 import CardCart from "./CardCart";
 
-export default function Cart({ productCart, setProductCart }) {
-    return (
-        <CardCart productCart={productCart} setProductCart={setProductCart} />
-    );
+// Questo componene si trova nella Header
+
+export default function Cart({ productCart, setProductCart, showLink }) {
+  return (
+    <CardCart
+      productCart={productCart}
+      setProductCart={setProductCart}
+      showLink={true}
+    />
+  );
 }

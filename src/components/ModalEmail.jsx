@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-export default function EmailModal() {
+
+export default function EmailModal({ triggerAlert }) {
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState("");
     const [sendEmail, setSendEmail] = useState(false);
-
 
 
     // Mostra la modale alla prima apertura del sito
@@ -37,11 +37,11 @@ export default function EmailModal() {
 
                     const data = await response.json(); // se il server restituisce JSON
                     console.log("Risposta dal server:", data);
-
-                    alert(`Grazie ${email}, ti abbiamo inviato una mail di benvenuto!`);
+                    `Grazie ${email}, ti abbiamo inviato una mail di benvenuto!`
+                    triggerAlert(`Grazie ${email}, ti abbiamo inviato una mail di benvenuto!`)
                     setShow(false); // chiudo la modale
                 } catch (error) {
-                    alert("Si è verificato un errore durante l'invio.");
+                    triggerAlert("Si è verificato un errore durante l'invio.");
                     console.error(error);
                 } finally {
                     setSendEmail(false); // resetto il trigger

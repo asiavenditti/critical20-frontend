@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
 import { useParams, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons/faCartPlus";
+
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import "@flaticon/flaticon-uicons/css/all/all.css";
+
 
 import Relatedgames from "../components/Relatedgames";
 
 export default function DetailsProductPage() {
-  // Outlet context con carrello e wishlist dall'applicazione principale
-  const { productCart, setProductCart, wishlist, setWishlist } =
+  // Outlet context con carrello, wishlist e triggerAlert
+  const { productCart, setProductCart, wishlist, setWishlist, triggerAlert } =
     useOutletContext();
 
   const { slug } = useParams();
   const [game, setGame] = useState(null);
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
+
+  const messageCart = " aggiunto al carrello!"
+  const messageWishlist = " aggiunto ai preferiti! "
 
   // Effetto per caricare il prodotto quando cambia lo slug
   useEffect(() => {
@@ -44,7 +52,7 @@ export default function DetailsProductPage() {
     }
   }, [game]);
 
-  // Quando lo slug cambia, scrolla all’inizio della pagina
+  // Scrolla all’inizio della pagina quando cambia lo slug
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
@@ -59,31 +67,13 @@ export default function DetailsProductPage() {
     return <p className="text-center text-danger my-5">{error}</p>;
   }
 
-  // Funzione per aggiungere il prodotto al carrello
-  const aggiungiAlCarrello = () => {
-    const existingIndex = productCart.findIndex((p) => p.id === game.id);
-
-    if (existingIndex !== -1) {
-      // Se è già presente, aumento la quantità
-      const newCart = [...productCart];
-      newCart[existingIndex].quantity += 1;
-      setProductCart(newCart);
-    } else {
-      // Altrimenti aggiungo nuovo oggetto con quantity = 1
-      setProductCart([...productCart, { ...game, quantity: 1 }]);
-    }
-  };
-
   // Funzione per aggiungere/rimuovere dai preferiti (wishlist)
   const toggleWishlist = () => {
     const isInWishlist = wishlist.some((p) => p.id === game.id);
 
     if (isInWishlist) {
-      // Se è già nei preferiti, lo rimuovo
-      const updatedWishlist = wishlist.filter((p) => p.id !== game.id);
-      setWishlist(updatedWishlist);
+      setWishlist(wishlist.filter((p) => p.id !== game.id));
     } else {
-      // Altrimenti lo aggiungo
       setWishlist([...wishlist, game]);
     }
   };
@@ -98,14 +88,37 @@ export default function DetailsProductPage() {
           className="card shadow-lg border-0 rounded-4 overflow-hidden"
           style={{ backgroundColor: "#f9f9f9", color: "#222" }}
         >
-          <div className="d-flex justify-content-end">
+
+
+          <div className="row g-0">
+            <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3 position-relative">
+              <img
+                src={game.file_paths?.[0] || "fallback-image.jpg"}
+                alt={game.name}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  maxHeight: "450px",
+                }}
+              />
+              <button
+
+                className="btn position-absolute top-0 end-0 m-3 fs-4 text-danger"
+                onClick={() => {
+                  toggleWishlist
+                  triggerAlert(`${game.name}${messageWishlist} ✅`);
+                }}
+
+     <div className="d-flex justify-content-end">
             <div>
               <button
                 type="button"
                 className="btn text-danger border-0"
                 onClick={toggleWishlist}
                 title={
-                  isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
+                  isFavorite
+                    ? "Rimuovi dai preferiti"
+                    : "Aggiungi ai preferiti"
                 }
               >
                 <i
@@ -195,7 +208,7 @@ export default function DetailsProductPage() {
                 </p>
               </div>
 
-              {/* Sezione prezzo e Carrello */}
+              {/* Sezione prezzo e Carrello con alert */}
               <div className="mt-3">
                 {game.price !== game.original_price ? (
                   <>
@@ -214,7 +227,23 @@ export default function DetailsProductPage() {
 
                 <button
                   className="btn btn-dark btn-lg mt-2 w-100"
-                  onClick={aggiungiAlCarrello}
+                  onClick={() => {
+                    // Aggiungi al carrello
+                    const existingIndex = productCart.findIndex(
+                      (p) => p.id === game.id
+                    );
+
+                    if (existingIndex !== -1) {
+                      const newCart = [...productCart];
+                      newCart[existingIndex].quantity += 1;
+                      setProductCart(newCart);
+                    } else {
+                      setProductCart([...productCart, { ...game, quantity: 1 }]);
+                    }
+
+                    // Trigger alert globale
+                    triggerAlert(`${game.name}${messageCart} ✅`);
+                  }}
                 >
                   <FontAwesomeIcon icon={faCartPlus} /> Aggiungi al carrello
                 </button>

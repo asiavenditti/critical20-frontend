@@ -128,8 +128,10 @@ export default function Header({
                 {/* Badge quantità */}
                 {getTotalQuantity(productCart) > 0 && (
                   <span
+
                     className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     style={{ top: "6px" }}
+
                   >
                     {getTotalQuantity(productCart)}
                   </span>
@@ -191,8 +193,10 @@ export default function Header({
             <Cart productCart={productCart} setProductCart={setProductCart} />
           </div>
         </div>
-        {/* Toast */}
+
       </header>
+    
+
     </>
   );
 }

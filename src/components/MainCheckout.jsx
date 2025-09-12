@@ -2,7 +2,7 @@ import CardCart from "./CardCart";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 
-export default function MainCheckout() {
+export default function MainCheckout({ showLink = true }) {
   const { productCart, setProductCart } = useOutletContext();
 
   const [userName, setUserName] = useState("");
@@ -54,10 +54,13 @@ export default function MainCheckout() {
               <CardCart
                 productCart={productCart}
                 setProductCart={setProductCart}
+                showLink={false}
               />
             </div>
             <div className="col">
-              <div className="card h-100" style={{ height: '680px' }}>   {/* all'occorrenza mettere maxHeight */}
+              <div className="card h-100" style={{ height: "680px" }}>
+                {" "}
+                {/* all'occorrenza mettere maxHeight */}
                 <div className="card-body">
                   {message && <p className="text-center fw-bold">{message}</p>}
 
@@ -136,7 +139,7 @@ export default function MainCheckout() {
             </div>
           </div>
         </div>
-      </main >
+      </main>
     </>
   );
 }

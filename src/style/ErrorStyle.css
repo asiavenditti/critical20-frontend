@@ -1,0 +1,53 @@
+.fancy-btn {
+    position: relative;
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #f0e6d2;
+    border: 2px solid #f0e6d2;
+    border-radius: 12px;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.fancy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.fancy-btn:hover::before {
+    left: 0;
+}
+
+.fancy-btn:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 0 12px #e8d6ba;
+}
+
+/* Variante chiara */
+.fancy-btn.light {
+    color: #1a1a1a;
+    border-color: #e8d6ba;
+    background-color: #e8d6ba;
+}
+
+.fancy-btn.light:hover {
+    background-color: #fff8e6;
+    color: #000;
+    box-shadow: 0 0 12px #e8d6ba;
+}

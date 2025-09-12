@@ -102,8 +102,8 @@ export default function Header({
                 {/* Badge quantità */}
                 {getTotalQuantity(wishlist) > 0 && (
                   <span
-                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    style={{ fontSize: "0.7rem" }}
+                    className="position-absolute top-6 start-115 translate-middle badge rounded-pill bg-danger"
+                    style={{ fontSize: "0.7rem", top: "6px" }}
                   >
                     {getTotalQuantity(wishlist)}
                   </span>
@@ -186,6 +186,7 @@ export default function Header({
           <Cart productCart={productCart} setProductCart={setProductCart} />
         </div>
       </div>
+
     </>
   );
 }

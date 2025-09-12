@@ -4,7 +4,8 @@ import { Link } from "react-router";
 
 export default function CardCart({
   productCart = [],
-  setProductCart = () => { },
+  setProductCart = () => {},
+  showLink = true,
 }) {
   const rimuoviDalCarrello = (indexToRemove) => {
     setProductCart(productCart.filter((_, i) => i !== indexToRemove));
@@ -29,7 +30,7 @@ export default function CardCart({
     <>
       <div className="card bg-light shadow-sm">
         <div className="card-header fw-bold">🛒 Il tuo carrello</div>
-        <div className="card-body overflow-auto" style={{ maxHeight: '680px' }}>
+        <div className="card-body overflow-auto" style={{ maxHeight: "680px" }}>
           {productCart.length === 0 ? (
             <p>Il carrello è vuoto</p>
           ) : (
@@ -104,6 +105,11 @@ export default function CardCart({
               <button className="btn btn-danger" onClick={svuotaCarrello}>
                 Svuota carrello
               </button>
+              {showLink && (
+                <Link to="/checkout" className="btn btn-primary">
+                  Vai al checkout
+                </Link>
+              )}
             </div>
           </div>
         )}

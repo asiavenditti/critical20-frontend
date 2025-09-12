@@ -111,7 +111,7 @@ export default function DetailsProductPage() {
                 }}
               />
               <button
-                className="btn position-absolute top-0 end-0 m-3 fs-4 text-danger"
+                className="btn position-absolute top-0 end-0 m-3 fs-4 text-danger border-0"
                 onClick={toggleWishlist}
                 title={
                   isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"

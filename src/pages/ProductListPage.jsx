@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 // per sincronizzare i filtri con l’URL
-import { useSearchParams } from "react-router-dom"; 
-
+import { useSearchParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 // Style
 import "../style/productlistpagestyle.css";
 

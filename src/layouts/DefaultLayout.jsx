@@ -15,10 +15,12 @@ export default function DefaultLayout({
   // Stato per l'alert
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
 
   // Funzione per triggerare alert globale
-  const triggerAlert = (message) => {
+  const triggerAlert = (message, type) => {
     setAlertMessage(message);
+    setAlertType(type);
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
   };
@@ -33,7 +35,7 @@ export default function DefaultLayout({
       />
 
       {/* Alert globale */}
-      <Alert message={alertMessage} show={showAlert} />
+      <Alert message={alertMessage} show={showAlert} type={alertType} />
       <ModalEmail triggerAlert={triggerAlert} />
 
       {/* Outlet con context */}

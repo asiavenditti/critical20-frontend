@@ -1,154 +1,123 @@
 import React from "react";
+import "animate.css";
 
 export default function Jumbotron() {
   return (
-    <div
-      id="jumbotronCarousel"
-      className="carousel slide"
-      data-bs-ride="carousel"
+    <section
+      className="position-relative d-flex align-items-center justify-content-center text-white rounded-3 shadow-xl"
+      style={{
+        width: "100%",
+        minHeight: "85vh",
+        background: "linear-gradient(to right, #151726, #1c1f2a, #000000)",
+        overflow: "hidden",
+        padding: "8rem 2rem 4rem 2rem",
+      }}
     >
-      <div className="carousel-inner">
-        {/* SLIDE 1 */}
-        <div className="carousel-item active">
-          <section
-            className="text-white text-center d-flex align-items-center"
-            style={{
-              backgroundColor: "#151726",
-              border: "#151726 solid 3px",
-              height: "100vh", // Altezza fissa per evitare salti
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <div className="container py-5">
-              <div className="row align-items-center justify-content-center">
-                {/* IMMAGINE PRINCIPALE */}
-                <div className="col-12 col-md-5 position-relative mb-4 mb-md-0 text-center">
-                  <img
-                    src="./img/immagineJumbo.png"
-                    alt="Ticket to Ride"
-                    className="img-fluid rounded"
-                    style={{
-                      maxWidth: "400px",
-                      width: "100%",
-                      height: "auto",
-                    }}
-                  />
-                </div>
+      {/* Overlay sfumato */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          background:
+            "radial-gradient(ellipse at bottom left, rgba(0,0,0,0.6), transparent 50%)",
+          zIndex: 1,
+        }}
+      ></div>
 
-                {/* TESTO */}
-                <div className="col-12 col-md-5 text-start">
-                  <h1>Nuovi Giochi in arrivo</h1>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum, neque quasi voluptatum <br /> reprehenderit
-                    possimus sequi voluptas blanditiis ab, nam, recusandae
-                    aliquid optio <br />
-                    repudiandae aperiam animi quidem ipsa magnam quam totam.
-                  </p>
-                  <button
-                    style={{
-                      backgroundColor: "#fadb7f",
-                      border: "solid 1px",
-                      borderRadius: "20px",
-                      padding: "0.5rem 1rem",
-                    }}
-                    className="mt-3"
-                  >
-                    <a
-                      className="text-decoration-none link-dark"
-                      href="/products"
-                    >
-                      Scopri di più..
-                    </a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
+      <div
+        className="container d-flex flex-column flex-md-row align-items-center justify-content-center position-relative gap-4"
+        style={{ zIndex: 2 }}
+      >
+        {/* Immagine principale */}
+        <div className="w-100 w-md-50 mb-4 mb-md-0 animate__animated animate__fadeInLeft">
+          <img
+            src="./public/img/immagineJumbo.png"
+            alt="Immagine promozionale"
+            className="img-fluid rounded-5 shadow-xl w-100"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              transition: "transform 0.5s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          />
         </div>
 
-        {/* SLIDE 2 */}
-        <div className="carousel-item">
-          <section
-            className="text-white text-center d-flex align-items-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/sfondo2.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              height: "100vh", // Stessa altezza della slide 1
-              border: "#151726 solid 3px",
-            }}
-          >
-            <div className="container py-5">
-              <div className="row justify-content-center">
-                <div className="col-10 col-md-8">
-                  <h1>Espansione disponibile</h1>
-                  <p className="lead mt-3">
-                    Scopri la nuova espansione che porta ancora più divertimento
-                    e nuove sfide. Gioca con gli amici e vivi nuove avventure.
-                  </p>
-                  <button
-                    style={{
-                      backgroundColor: "#fadb7f",
-                      border: "solid 1px",
-                      borderRadius: "20px",
-                      padding: "0.5rem 1rem",
-                    }}
-                    className="mt-4"
-                  >
-                    <a
-                      className="text-decoration-none link-dark"
-                      href="/products"
-                    >
-                      Scopri di più..
-                    </a>
-                  </button>
-                </div>
-              </div>
+        {/* Testo */}
+        <div className="w-100 w-md-50 text-center text-md-start animate__animated animate__fadeInRight position-relative">
+          <h1 className="display-4 display-md-3 fw-bold mb-3">Nuovi Giochi in Arrivo 🎲</h1>
+          <p className="lead mb-4">
+            Scopri le ultime novità e arricchisci la tua collezione. Avventure,
+            espansioni e divertimento per ogni serata in compagnia!
+          </p>
+
+          {/* Pulsante con frecce invertite alla destra */}
+          <div className="d-flex align-items-center gap-4 mb-5 position-relative">
+            <a
+              href="/products"
+              className="btn btn-warning btn-lg rounded-pill"
+              style={{ transition: "transform 0.3s" }}
+              onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            >
+              Vai ai Prodotti
+            </a>
+
+            {/* Frecce animate invertite */}
+            <div className="d-flex gap-1">
+              <div className="arrow-left bounce"></div>
+              <div className="arrow-left bounce" style={{ animationDelay: "0.2s" }}></div>
+              <div className="arrow-left bounce" style={{ animationDelay: "0.4s" }}></div>
             </div>
-          </section>
+          </div>
+
+          {/* Quadrato etichetta promozioni */}
+          <div
+            className="bg-warning text-dark fw-bold text-center py-2 px-3 mb-3 rounded animate__animated animate__fadeInUp"
+            style={{ display: "inline-block", fontSize: "1rem" }}
+          >
+            Ogni settimana nuove promozioni!
+          </div>
         </div>
       </div>
 
-      {/* CONTROLLI */}
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target="#jumbotronCarousel"
-        data-bs-slide="prev"
+      {/* Striscia inferiore */}
+      <div
+        className="position-absolute bottom-0 start-0 w-100 text-center text-white-50 p-2"
+        style={{
+          background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)",
+        }}
       >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Precedente</span>
-      </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target="#jumbotronCarousel"
-        data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Successivo</span>
-      </button>
-
-      {/* INDICATORI */}
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#jumbotronCarousel"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#jumbotronCarousel"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
+        *Promozioni aggiornate ogni settimana.
       </div>
-    </div>
+
+      {/* CSS per le frecce animate */}
+      <style jsx>{`
+        .arrow-left {
+          width: 20px;
+          height: 20px;
+          border-top: 3px solid white;
+          border-left: 3px solid white;
+          transform: rotate(-45deg);
+          margin: 0 auto;
+        }
+
+        .bounce {
+          animation: bounceArrow 1s infinite;
+        }
+
+        @keyframes bounceArrow {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateX(0) rotate(-45deg);
+          }
+          40% {
+            transform: translateX(-8px) rotate(-45deg);
+          }
+          60% {
+            transform: translateX(-4px) rotate(-45deg);
+          }
+        }
+      `}</style>
+    </section>
   );
 }

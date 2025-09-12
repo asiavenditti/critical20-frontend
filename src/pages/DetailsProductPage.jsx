@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import "@flaticon/flaticon-uicons/css/all/all.css";
 
 import Relatedgames from "../components/Relatedgames";
 
@@ -117,10 +116,18 @@ export default function DetailsProductPage() {
                   isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
                 }
               >
-                <FontAwesomeIcon
-                  className={isFavorite ? "text-danger" : "text-secondary"}
-                  icon={faHeart}
-                />
+                <i
+                  className={
+                    isFavorite
+                      ? "fi fi-ts-dice-d20 text-danger"
+                      : "fi fi-ts-dice-d20 text-black"
+                  }
+                  style={{
+                    display: "inline-block",
+                    fontSize: "30px",
+                    animation: isFavorite ? "spin 0.5s ease-in-out" : "",
+                  }}
+                ></i>
               </button>
             </div>
 

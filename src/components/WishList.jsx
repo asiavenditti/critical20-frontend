@@ -67,7 +67,7 @@ export default function WishList({
                   </div>
                 </div>
                 <div className=" d-flex justify-content-end w-100 ">
-                  <div className="d-flex ">
+                  <div className="d-flex  gap-2">
                     <button
                       className="btn btn-sm btn-danger"
                       onClick={() => rimuoviDalCarrello(index)}

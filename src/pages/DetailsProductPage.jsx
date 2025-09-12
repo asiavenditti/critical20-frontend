@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons/faCartPlus";
 import "@flaticon/flaticon-uicons/css/all/all.css";
 
 import Relatedgames from "../components/Relatedgames";
@@ -97,20 +98,10 @@ export default function DetailsProductPage() {
           className="card shadow-lg border-0 rounded-4 overflow-hidden"
           style={{ backgroundColor: "#f9f9f9", color: "#222" }}
         >
-          <div className="row g-0">
-            <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3 position-relative">
-              <img
-                src={game.file_paths?.[0] || "fallback-image.jpg"} //
-                className="img-fluid rounded"
-                alt={game.name}
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  maxHeight: "450px",
-                }}
-              />
+          <div className="d-flex justify-content-end">
+            <div>
               <button
-                className="btn position-absolute top-0 end-0 m-3 fs-4 text-danger border-0"
+                className="btn text-danger border-0"
                 onClick={toggleWishlist}
                 title={
                   isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
@@ -130,6 +121,23 @@ export default function DetailsProductPage() {
                 ></i>
               </button>
             </div>
+          </div>
+
+          <div className="row g-0">
+            <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3 position-relative">
+              <div>
+                <img
+                  src={game.file_paths?.[0] || "fallback-image.jpg"} //
+                  className="img-fluid rounded"
+                  alt={game.name}
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    maxHeight: "450px",
+                  }}
+                />
+              </div>
+            </div>
 
             {/* Colonna dettaglio gioco */}
             <div className="col-md-7 p-4 d-flex flex-column justify-content-between">
@@ -138,23 +146,21 @@ export default function DetailsProductPage() {
 
                 {/* Badge info rapide */}
                 <div className="mb-2">
-                  <span className="badge bg-secondary me-2">
-                    Età: {game.age}+
-                  </span>
-                  <span className="badge bg-secondary me-2">
+                  <span className="badge bg-black me-2">Età: {game.age}+</span>
+                  <span className="badge bg-black me-2">
                     Giocatori: {game.players}
                   </span>
-                  <span className="badge bg-secondary me-2">
+                  <span className="badge bg-black me-2">
                     Durata: {game.duration}'
                   </span>
-                  <span className="badge bg-secondary me-2">
+                  <span className="badge bg-black me-2">
                     Lingua: {game.language}
                   </span>
                 </div>
 
                 <p className="mt-3 mb-1">
                   <strong>Difficoltà:</strong>{" "}
-                  <span className="badge bg-success text-dark">
+                  <span className="badge bg-success text-white">
                     {game.difficulty}
                   </span>
                 </p>
@@ -209,7 +215,7 @@ export default function DetailsProductPage() {
                   className="btn btn-dark btn-lg mt-2 w-100"
                   onClick={aggiungiAlCarrello}
                 >
-                  🛒 Aggiungi al carrello
+                  <FontAwesomeIcon icon={faCartPlus} /> Aggiungi al carrello
                 </button>
               </div>
             </div>

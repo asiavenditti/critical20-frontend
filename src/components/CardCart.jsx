@@ -1,4 +1,4 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
 
@@ -29,7 +29,9 @@ export default function CardCart({
   return (
     <>
       <div className="card bg-light shadow-sm">
-        <div className="card-header fw-bold">🛒 Il tuo carrello</div>
+        <div className="card-header fw-bold">
+          <FontAwesomeIcon icon={faCartShopping} /> Il tuo carrello
+        </div>
         <div className="card-body overflow-auto" style={{ maxHeight: "680px" }}>
           {productCart.length === 0 ? (
             <p>Il carrello è vuoto</p>

@@ -7,11 +7,11 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons/faCartPlus";
 import "@flaticon/flaticon-uicons/css/all/all.css";
 
 import Relatedgames from "../components/Relatedgames";
+import BtnWishlist from "../components/BtnWishlist";
 
 export default function DetailsProductPage() {
   // Outlet context con carrello, wishlist e triggerAlert
-  const { productCart, setProductCart, wishlist, setWishlist, triggerAlert } =
-    useOutletContext();
+  const { productCart, setProductCart, triggerAlert } = useOutletContext();
 
   const { slug } = useParams();
   const [game, setGame] = useState(null);
@@ -63,20 +63,6 @@ export default function DetailsProductPage() {
     return <p className="text-center text-danger my-5">{error}</p>;
   }
 
-  // Funzione per aggiungere/rimuovere dai preferiti (wishlist)
-  const toggleWishlist = () => {
-    const isInWishlist = wishlist.some((p) => p.id === game.id);
-
-    if (isInWishlist) {
-      setWishlist(wishlist.filter((p) => p.id !== game.id));
-    } else {
-      setWishlist([...wishlist, game]);
-    }
-  };
-
-  // Verifico se il prodotto è nei preferiti per cambiare l’icona
-  const isFavorite = wishlist.some((p) => p.id === game.id);
-
   return (
     <div className="container">
       <div className="containercard my-5 py-5">
@@ -88,37 +74,7 @@ export default function DetailsProductPage() {
             {/* Mia */}
             <div className="d-flex justify-content-end">
               <div>
-                <button
-                  type="button"
-                  className="btn text-danger border-0"
-                  onClick={() => {
-                    toggleWishlist();
-                    triggerAlert(
-                      isFavorite
-                        ? `${game.name} Rimosso dai preferiti`
-                        : ` ${game.name} Aggiunto ai preferiti`,
-                      isFavorite ? "danger" : "success"
-                    );
-                  }}
-                  title={
-                    isFavorite
-                      ? "Rimuovi dai preferiti"
-                      : "Aggiungi ai preferiti"
-                  }
-                >
-                  <i
-                    className={
-                      isFavorite
-                        ? "fi fi-ts-dice-d20 text-danger"
-                        : "fi fi-ts-dice-d20 text-black"
-                    }
-                    style={{
-                      display: "inline-block",
-                      fontSize: "30px",
-                      animation: isFavorite ? "spin 0.5s ease-in-out" : "",
-                    }}
-                  ></i>
-                </button>
+                <BtnWishlist game={game} />
               </div>
             </div>
 

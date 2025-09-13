@@ -43,8 +43,10 @@ nav {
 }
 
 .sfondo {
-  background-image: url(img/D&D\ sfondo.jpg);
+  background-image: url("img/D&Dsfondo.jpg");
   background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
 }
 
 .SecCard {

@@ -1,21 +1,8 @@
 import { Link } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
+import BtnWishlist from "./BtnWishlist";
 export default function PLCardGrid({ game }) {
-  const { wishlist, setWishlist, triggerAlert } = useOutletContext();
-  const toggleWishlist = () => {
-    const isInWishlist = wishlist.some((p) => p.id === game.id);
-
-    if (isInWishlist) {
-      setWishlist(wishlist.filter((p) => p.id !== game.id));
-    } else {
-      setWishlist([...wishlist, game]);
-    }
-  };
-
-  // Verifico se il prodotto è nei preferiti per cambiare l’icona
-  const isFavorite = wishlist.some((p) => p.id === game.id);
   return (
-    <div key={game.id} className="col-12 col-md-6 col-lg-4">
+    <div className="col-12 col-md-6 col-lg-4">
       <div className="card bg-light products-card h-100">
         <div className="card-img p-4 ">
           <div className="d-flex justify-content-center">
@@ -57,36 +44,8 @@ export default function PLCardGrid({ game }) {
               </Link>
             </div>
 
-            <div>
-              <button
-                type="button"
-                className="btn text-danger border-0"
-                onClick={() => {
-                  toggleWishlist();
-                  triggerAlert(
-                    isFavorite
-                      ? `${game.name} Rimosso dai preferiti`
-                      : ` ${game.name} Aggiunto ai preferiti`,
-                    isFavorite ? "danger" : "success"
-                  );
-                }}
-                title={
-                  isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
-                }
-              >
-                <i
-                  className={
-                    isFavorite
-                      ? "fi fi-ts-dice-d20 text-danger"
-                      : "fi fi-ts-dice-d20 text-black"
-                  }
-                  style={{
-                    display: "inline-block",
-                    fontSize: "30px",
-                    animation: isFavorite ? "spin 0.5s ease-in-out" : "",
-                  }}
-                ></i>
-              </button>
+            <div className="p-2">
+              <BtnWishlist game={game} />
             </div>
           </div>
           {/* Link al dettaglio o azione */}

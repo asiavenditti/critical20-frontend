@@ -4,11 +4,15 @@
 }
 
 .cardlist {
-  height: 200px;
+  min-height: 180px;
 }
 
 /* Container dei filtri */
 
 .containerfilter {
   width: 200px;
+}
+.custom-tooltip {
+  background-color: #1b152c;
+  color: #fadb7f;
 }

@@ -30,7 +30,7 @@ export default function Jumbotron() {
         {/* Immagine principale */}
         <div className="w-100 w-md-50 mb-4 mb-md-0 animate__animated animate__fadeInLeft">
           <img
-            src="./public/img/immagineJumbo.png"
+            src="/img/immagineJumbo.png"
             alt="Immagine promozionale"
             className="img-fluid rounded-5 shadow-xl w-100"
             style={{
@@ -38,14 +38,18 @@ export default function Jumbotron() {
               height: "auto",
               transition: "transform 0.5s",
             }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.08)")
+            }
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           />
         </div>
 
         {/* Testo */}
         <div className="w-100 w-md-50 text-center text-md-start animate__animated animate__fadeInRight position-relative">
-          <h1 className="display-4 display-md-3 fw-bold mb-3">Nuovi Giochi in Arrivo 🎲</h1>
+          <h1 className="display-4 display-md-3 fw-bold mb-3">
+            Nuovi Giochi in Arrivo 🎲
+          </h1>
           <p className="lead mb-4">
             Scopri le ultime novità e arricchisci la tua collezione. Avventure,
             espansioni e divertimento per ogni serata in compagnia!
@@ -57,7 +61,9 @@ export default function Jumbotron() {
               href="/products"
               className="btn btn-warning btn-lg rounded-pill"
               style={{ transition: "transform 0.3s" }}
-              onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
               onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
             >
               Vai ai Prodotti
@@ -66,8 +72,14 @@ export default function Jumbotron() {
             {/* Frecce animate invertite */}
             <div className="d-flex gap-1">
               <div className="arrow-left bounce"></div>
-              <div className="arrow-left bounce" style={{ animationDelay: "0.2s" }}></div>
-              <div className="arrow-left bounce" style={{ animationDelay: "0.4s" }}></div>
+              <div
+                className="arrow-left bounce"
+                style={{ animationDelay: "0.2s" }}
+              ></div>
+              <div
+                className="arrow-left bounce"
+                style={{ animationDelay: "0.4s" }}
+              ></div>
             </div>
           </div>
 
@@ -107,7 +119,11 @@ export default function Jumbotron() {
         }
 
         @keyframes bounceArrow {
-          0%, 20%, 50%, 80%, 100% {
+          0%,
+          20%,
+          50%,
+          80%,
+          100% {
             transform: translateX(0) rotate(-45deg);
           }
           40% {

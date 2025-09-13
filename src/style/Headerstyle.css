@@ -44,9 +44,10 @@ nav {
 
 .sfondo {
   background-image: url("img/D&Dsfondo.jpg");
-  background-size: cover;
-  background-position: top;
+  background-size: cover; /* Copre tutto lo schermo */
+  background-position: 50% -6%;
   background-attachment: fixed;
+  min-height: 80vh;
 }
 
 .SecCard {
@@ -155,4 +156,13 @@ nav {
 .bgN {
   background-color: #151726;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .sfondo {
+    background-image: url("img/D&Dsfondo.jpg");
+    background-size: cover; /* Copre tutto lo schermo */
+    background-position: 16%;
+    min-height: 100vh;
+  }
 }

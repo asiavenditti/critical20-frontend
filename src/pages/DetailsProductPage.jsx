@@ -8,7 +8,7 @@ import "@flaticon/flaticon-uicons/css/all/all.css";
 
 import Relatedgames from "../components/Relatedgames";
 import BtnWishlist from "../components/BtnWishlist";
-
+import PageNotFoundProduct from "./PageNotFoundProduct";
 export default function DetailsProductPage() {
   // Outlet context con carrello, wishlist e triggerAlert
   const { productCart, setProductCart, triggerAlert } = useOutletContext();
@@ -60,7 +60,7 @@ export default function DetailsProductPage() {
 
   // In caso di errore nella fetch
   if (error) {
-    return <p className="text-center text-danger my-5">{error}</p>;
+    return <PageNotFoundProduct slug={slug} />;
   }
 
   return (

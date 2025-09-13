@@ -1,5 +1,6 @@
 .card_thank {
   height: 700px;
   background-image: url("/bg_thank.png");
+  background-size: cover;
   background-position: center;
 }

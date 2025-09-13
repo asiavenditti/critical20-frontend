@@ -8,7 +8,7 @@ import DetailsProductPage from "./pages/DetailsProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import PageCheckout from "./pages/PageCheckout";
-
+import PageNotFoundProduct from "./pages/PageNotFoundProduct";
 function App() {
   // Carrello
   const [productCart, setProductCart] = useState(() => {
@@ -49,6 +49,7 @@ function App() {
 
           <Route path="/checkout" element={<PageCheckout />} />
           <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="/products/:slug*" element={<PageNotFoundProduct />} /> */}
           {/* <Route path="/prova" element={<PaginadiProva />} /> */}
         </Route>
       </Routes>

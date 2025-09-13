@@ -25,7 +25,7 @@ export default function PageNotFoundProduct() {
         src="/imgProduct/babyYoda.png"
         alt="baby-yoda"
         className="img-fluid mb-4"
-        style={{ maxWidth: "200px", height: "auto" }}
+        style={{ maxWidth: "200px", height: "auto", marginLeft: '25px' }}
       />
 
       <h1 className="display-4 fw-bold mb-2">Prodotto non trovato</h1>

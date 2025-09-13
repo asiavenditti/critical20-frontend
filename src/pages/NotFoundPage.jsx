@@ -30,6 +30,8 @@ export default function NotFoundPage() {
                 style={{
                     maxWidth: '200px',
                     height: 'auto',
+                    marginRight: '20px'
+
                 }}
             />
 

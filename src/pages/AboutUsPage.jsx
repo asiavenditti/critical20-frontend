@@ -35,7 +35,7 @@ export default function AboutUsPage() {
             />
           </a>
           <a
-            href="https://github.com/edoardo-lova"
+            href="https://github.com/edoardolova"
             target="_blank"
             rel="noopener noreferrer"
             title="Edoardo"
@@ -59,7 +59,7 @@ export default function AboutUsPage() {
             />
           </a>
           <a
-            href="https://github.com/CristianBuonocuore02"
+            href="https://github.com//CristianBuonocore02"
             target="_blank"
             rel="noopener noreferrer"
             title="Cristian"

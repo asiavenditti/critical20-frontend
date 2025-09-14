@@ -6,6 +6,9 @@ import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";
 import DetailsProductPage from "./pages/DetailsProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AboutUsPage from "./pages/AboutUsPage";
+
+
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import PageCheckout from "./pages/PageCheckout";
 import PageNotFoundProduct from "./pages/PageNotFoundProduct";
@@ -47,7 +50,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/products/:slug" element={<DetailsProductPage />} />
-
+            <Route path="/aboutus" element={<AboutUsPage />} />
             <Route path="/checkout" element={<PageCheckout />} />
             <Route path="*" element={<NotFoundPage />} />
             {/* <Route path="/products/:slug*" element={<PageNotFoundProduct />} /> */}

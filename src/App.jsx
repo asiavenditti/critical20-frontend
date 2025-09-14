@@ -12,6 +12,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import PageCheckout from "./pages/PageCheckout";
 import PageNotFoundProduct from "./pages/PageNotFoundProduct";
+import ScrollFix from "./components/ScrollFix";
 function App() {
   // Carrello
   const [productCart, setProductCart] = useState(() => {
@@ -36,6 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       <AnimatedRoutes>
+        <ScrollFix />
         <Routes>
           <Route
             element={

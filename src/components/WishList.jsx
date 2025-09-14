@@ -35,7 +35,18 @@ export default function WishList({
             Aggiunto tutto al carrello
           </div>
         )}
-        <div className="card-header fw-bold">🛒 Wishlits</div>
+        <div className="card-header fw-bold">
+          {" "}
+          <i
+            className="fi fi-ts-dice-d20 text-danger "
+            style={{
+              display: "inline-block",
+              fontSize: "20px",
+              verticalAlign: "middle",
+            }}
+          ></i>{" "}
+          Wishlits
+        </div>
         <div className="card-body overflow-auto" style={{ maxHeight: "680px" }}>
           {wishlist.length === 0 ? (
             <p>La wishlist é vuota</p>

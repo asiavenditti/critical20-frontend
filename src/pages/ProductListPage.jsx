@@ -107,7 +107,7 @@ export default function ProductListPage() {
   return (
     <>
       <main className="mainProductList py-5">
-        <div className="container py-5 ">
+        <div id="products" className="container py-5 ">
           <h1 className="text-light mb-4  text-center">I NOSTRI GIOCHI</h1>
 
           {/* 🔍 FILTRI IN ALTO */}

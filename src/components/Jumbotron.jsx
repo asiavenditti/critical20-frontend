@@ -1,5 +1,11 @@
 import React from "react";
+
+// import "animate.css";
+import { Link, NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+
 import "animate.css";
+
 
 export default function Jumbotron() {
   return (
@@ -29,20 +35,22 @@ export default function Jumbotron() {
       >
         {/* Immagine principale */}
         <div className="w-100 w-md-50 mb-4 mb-md-0 animate__animated animate__fadeInLeft">
-          <img
-            src="/img/immagineJumbo.png"
-            alt="Immagine promozionale"
-            className="img-fluid rounded-5 shadow-xl w-100"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              transition: "transform 0.5s",
-            }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.transform = "scale(1.08)")
-            }
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          />
+          <HashLink to="/products/lost-ruins-of-arnak#details-product-page">
+            <img
+              src="/img/immagineJumbo.png"
+              alt="Immagine promozionale"
+              className="img-fluid rounded-5 shadow-xl w-100"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                transition: "transform 0.5s",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.08)")
+              }
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            />
+          </HashLink>
         </div>
 
         {/* Testo */}
@@ -57,8 +65,8 @@ export default function Jumbotron() {
 
           {/* Pulsante con frecce invertite alla destra */}
           <div className="d-flex align-items-center gap-4 mb-5 position-relative">
-            <a
-              href="/products"
+            <HashLink
+              to={"/products#products"}
               className="btn btn-warning btn-lg rounded-pill"
               style={{ transition: "transform 0.3s" }}
               onMouseOver={(e) =>
@@ -67,7 +75,7 @@ export default function Jumbotron() {
               onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
             >
               Vai ai Prodotti
-            </a>
+            </HashLink>
 
             {/* Frecce animate invertite */}
             <div className="d-flex gap-1">

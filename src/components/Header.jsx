@@ -1,11 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faHeart,
-  faShoppingCart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -15,6 +11,7 @@ import WishList from "./WishList";
 // Style
 import "../style/Headerstyle.css";
 import "../style/Modalstyle.css";
+import { HashLink } from "react-router-hash-link";
 
 export default function Header({
   productCart,
@@ -65,7 +62,7 @@ export default function Header({
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    to="/products"
+                    to={"/products#products"}
                     className="nav-link"
                     onClick={closeMenu}
                   >
@@ -103,8 +100,14 @@ export default function Header({
                   data-bs-target="#offcanvasWishlist"
                   aria-controls="offcanvasWishlist"
                 >
-                  <FontAwesomeIcon icon={faHeart} size="lg" />
-                  {/* Badge quantità */}
+                  <i
+                    className="fi fi-ts-dice-d20 text-white "
+                    style={{
+                      display: "inline-block",
+                      fontSize: "20px",
+                      verticalAlign: "middle",
+                    }}
+                  ></i>{" "}
                   {getTotalQuantity(wishlist) > 0 && (
                     <span
                       className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -112,7 +115,8 @@ export default function Header({
                     >
                       {getTotalQuantity(wishlist)}
                     </span>
-                  )}
+                  )}{" "}
+                  {/* Badge quantità */}
                 </button>
               </div>
 
@@ -128,10 +132,8 @@ export default function Header({
                 {/* Badge quantità */}
                 {getTotalQuantity(productCart) > 0 && (
                   <span
-
                     className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     style={{ top: "6px" }}
-
                   >
                     {getTotalQuantity(productCart)}
                   </span>
@@ -193,10 +195,7 @@ export default function Header({
             <Cart productCart={productCart} setProductCart={setProductCart} />
           </div>
         </div>
-
       </header>
-
-
     </>
   );
 }

@@ -11,6 +11,7 @@ import WishList from "./WishList";
 // Style
 import "../style/Headerstyle.css";
 import "../style/Modalstyle.css";
+import { HashLink } from "react-router-hash-link";
 
 export default function Header({
   productCart,
@@ -61,7 +62,7 @@ export default function Header({
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    to="/products"
+                    to={"/products#products"}
                     className="nav-link"
                     onClick={closeMenu}
                   >

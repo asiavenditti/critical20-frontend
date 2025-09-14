@@ -106,137 +106,139 @@ export default function ProductListPage() {
 
   return (
     <>
-      <div className="container mt-5">
-        <h1 className="text-light mb-4 pt-5 text-center">I NOSTRI GIOCHI</h1>
+      <main className="mainProductList py-5">
+        <div className="container py-5 ">
+          <h1 className="text-light mb-4  text-center">I NOSTRI GIOCHI</h1>
 
-        {/* 🔍 FILTRI IN ALTO */}
-        <div className="border p-3 rounded p-3 mb-4">
-          <div className="row g-4">
-            {/* Ricerca per nome */}
-            <div className="col-md-6">
-              <input
-                type="search"
-                className="form-control"
-                placeholder="Cerca gioco..."
-                value={searchTerm}
-                onChange={(e) => updateParam("name", e.target.value)}
-              />
-            </div>
+          {/* 🔍 FILTRI IN ALTO */}
+          <div className="border p-3 rounded p-3 mb-4">
+            <div className="row g-4">
+              {/* Ricerca per nome */}
+              <div className="col-md-6">
+                <input
+                  type="search"
+                  className="form-control"
+                  placeholder="Cerca gioco..."
+                  value={searchTerm}
+                  onChange={(e) => updateParam("name", e.target.value)}
+                />
+              </div>
 
-            {/* Editor */}
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Editor..."
-                value={editor}
-                onChange={(e) => updateParam("editor", e.target.value)}
-              />
-            </div>
+              {/* Editor */}
+              <div className="col-md-6">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Editor..."
+                  value={editor}
+                  onChange={(e) => updateParam("editor", e.target.value)}
+                />
+              </div>
 
-            {/* Categoria (commentata) */}
+              {/* Categoria (commentata) */}
 
-            {/* Difficoltà */}
-            <div className="col-md-4">
-              <select
-                className="form-select"
-                value={difficulty}
-                onChange={(e) => updateParam("difficulty", e.target.value)}
-              >
-                <option value="">Tutte le difficoltà</option>
-                <option value="facile">Facile</option>
-                <option value="medio">Medio</option>
-                <option value="difficile">Difficile</option>
-              </select>
-            </div>
+              {/* Difficoltà */}
+              <div className="col-md-4">
+                <select
+                  className="form-select"
+                  value={difficulty}
+                  onChange={(e) => updateParam("difficulty", e.target.value)}
+                >
+                  <option value="">Tutte le difficoltà</option>
+                  <option value="facile">Facile</option>
+                  <option value="medio">Medio</option>
+                  <option value="difficile">Difficile</option>
+                </select>
+              </div>
 
-            {/* Ordinamento */}
-            <div className="col-md-4">
-              <select
-                className="form-select"
-                value={sort}
-                onChange={(e) => updateParam("sort", e.target.value)}
-              >
-                <option value="">Ordina per...</option>
-                <option value="name_asc">Nome A-Z</option>
-                <option value="name_desc">Nome Z-A</option>
-                <option value="price_asc">Prezzo crescente</option>
-                <option value="price_desc">Prezzo decrescente</option>
-              </select>
-            </div>
+              {/* Ordinamento */}
+              <div className="col-md-4">
+                <select
+                  className="form-select"
+                  value={sort}
+                  onChange={(e) => updateParam("sort", e.target.value)}
+                >
+                  <option value="">Ordina per...</option>
+                  <option value="name_asc">Nome A-Z</option>
+                  <option value="name_desc">Nome Z-A</option>
+                  <option value="price_asc">Prezzo crescente</option>
+                  <option value="price_desc">Prezzo decrescente</option>
+                </select>
+              </div>
 
-            {/* Età minima */}
-            <div className="col-md-2 ms-auto">
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Età min."
-                value={age}
-                onChange={(e) => updateParam("age", e.target.value)}
-              />
-            </div>
+              {/* Età minima */}
+              <div className="col-md-2 ms-auto">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Età min."
+                  value={age}
+                  onChange={(e) => updateParam("age", e.target.value)}
+                />
+              </div>
 
-            {/* Numero giocatori */}
-            <div className="col-md-2 me-auto">
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Giocatori"
-                value={players}
-                onChange={(e) => updateParam("players", e.target.value)}
-              />
+              {/* Numero giocatori */}
+              <div className="col-md-2 me-auto">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Giocatori"
+                  value={players}
+                  onChange={(e) => updateParam("players", e.target.value)}
+                />
+              </div>
             </div>
           </div>
+
+          {/* Messaggi risultati */}
+          <div className="mt-3 d-flex">
+            {totalResults > 0 && (
+              <p className="text-light text-center fs-4 fw-semibold mb-0">
+                {totalResults} risultati trovati
+              </p>
+            )}
+            {totalResults === 0 && !loading && (
+              <p className="text-danger text-center fs-4 fw-semibold mb-0">
+                Nessun risultato per la ricerca
+              </p>
+            )}
+
+            {/* Bottoni vista */}
+            <button
+              className={`btn ms-auto ${
+                grid ? "btn-light text-dark" : "btn-outline-light"
+              }`}
+              onClick={() => setGrid(true)}
+            >
+              vista griglia
+            </button>
+            <button
+              className={`btn ms-2 ${
+                !grid ? "btn-light text-dark" : "btn-outline-light"
+              }`}
+              onClick={() => setGrid(false)}
+            >
+              vista lista
+            </button>
+          </div>
+
+          {/* 🎴 LISTA GIOCHI */}
+          <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
+            {games.map((game) =>
+              grid ? (
+                <PLCardGrid game={game} key={game.id} />
+              ) : (
+                <PLCardList game={game} key={game.id} />
+              )
+            )}
+          </div>
+
+          {/*  Sentinel per infinite scroll */}
+          <div ref={lastElementRef} style={{ height: "40px" }} />
+
+          {loading && <p className="text-center text-light">Caricamento...</p>}
         </div>
-
-        {/* Messaggi risultati */}
-        <div className="mt-3 d-flex">
-          {totalResults > 0 && (
-            <p className="text-light text-center fs-4 fw-semibold mb-0">
-              {totalResults} risultati trovati
-            </p>
-          )}
-          {totalResults === 0 && !loading && (
-            <p className="text-danger text-center fs-4 fw-semibold mb-0">
-              Nessun risultato per la ricerca
-            </p>
-          )}
-
-          {/* Bottoni vista */}
-          <button
-            className={`btn ms-auto ${
-              grid ? "btn-light text-dark" : "btn-outline-light"
-            }`}
-            onClick={() => setGrid(true)}
-          >
-            vista griglia
-          </button>
-          <button
-            className={`btn ms-2 ${
-              !grid ? "btn-light text-dark" : "btn-outline-light"
-            }`}
-            onClick={() => setGrid(false)}
-          >
-            vista lista
-          </button>
-        </div>
-
-        {/* 🎴 LISTA GIOCHI */}
-        <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
-          {games.map((game) =>
-            grid ? (
-              <PLCardGrid game={game} key={game.id} />
-            ) : (
-              <PLCardList game={game} key={game.id} />
-            )
-          )}
-        </div>
-
-        {/*  Sentinel per infinite scroll */}
-        <div ref={lastElementRef} style={{ height: "40px" }} />
-
-        {loading && <p className="text-center text-light">Caricamento...</p>}
-      </div>
+      </main>
     </>
   );
 }

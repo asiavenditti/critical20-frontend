@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";
 import DetailsProductPage from "./pages/DetailsProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
-
+import AnimatedRoutes from "./components/AnimatedRoutes";
 import PageCheckout from "./pages/PageCheckout";
 import PageNotFoundProduct from "./pages/PageNotFoundProduct";
 function App() {
@@ -32,27 +32,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          element={
-            <DefaultLayout
-              productCart={productCart}
-              setProductCart={setProductCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        >
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductListPage />} />
-          <Route path="/products/:slug" element={<DetailsProductPage />} />
+      <AnimatedRoutes>
+        <Routes>
+          <Route
+            element={
+              <DefaultLayout
+                productCart={productCart}
+                setProductCart={setProductCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          >
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductListPage />} />
+            <Route path="/products/:slug" element={<DetailsProductPage />} />
 
-          <Route path="/checkout" element={<PageCheckout />} />
-          <Route path="*" element={<NotFoundPage />} />
-          {/* <Route path="/products/:slug*" element={<PageNotFoundProduct />} /> */}
-          {/* <Route path="/prova" element={<PaginadiProva />} /> */}
-        </Route>
-      </Routes>
+            <Route path="/checkout" element={<PageCheckout />} />
+            <Route path="*" element={<NotFoundPage />} />
+            {/* <Route path="/products/:slug*" element={<PageNotFoundProduct />} /> */}
+            {/* <Route path="/prova" element={<PaginadiProva />} /> */}
+          </Route>
+        </Routes>
+      </AnimatedRoutes>
     </BrowserRouter>
   );
 }

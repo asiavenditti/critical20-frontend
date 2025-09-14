@@ -15,16 +15,16 @@ export default function AboutUsPage() {
                     <a href="https://github.com/asiavenditti" target="_blank" rel="noopener noreferrer" title="Asia">
                         <img src="../imgProduct/asia.jpeg" alt="Asia" className="avatar" />
                     </a>
-                    <a href="https://github.com/davide-criscuolo" target="_blank" rel="noopener noreferrer" title="Davide">
+                    <a href="https://github.com/DavideCriscuolo" target="_blank" rel="noopener noreferrer" title="Davide">
                         <img src="../imgProduct/davide.png" alt="Davide" className="avatar" />
                     </a>
-                    <a href="https://github.com/edoardo-lova" target="_blank" rel="noopener noreferrer" title="Edoardo">
+                    <a href="https://github.com/edoardolova" target="_blank" rel="noopener noreferrer" title="Edoardo">
                         <img src="../imgProduct/edoardo.png" alt="Edoardo" className="avatar" />
                     </a>
                     <a href="https://github.com/marzia-blasi" target="_blank" rel="noopener noreferrer" title="Marzia">
                         <img src="../imgProduct/marzia.jpeg" alt="Marzia" className="avatar" />
                     </a>
-                    <a href="https://github.com/CristianBuonocuore02" target="_blank" rel="noopener noreferrer" title="Cristian">
+                    <a href="https://github.com/CristianBuonocore02" target="_blank" rel="noopener noreferrer" title="Cristian">
                         <img src="../imgProduct/cristian.jpeg" alt="Cristian" className="avatar" />
                     </a>
                 </div>

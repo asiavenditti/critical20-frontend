@@ -1,45 +1,41 @@
 import { useState, useEffect } from "react";
 import { useParams, useOutletContext } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons/faCartPlus";
-
 import "@flaticon/flaticon-uicons/css/all/all.css";
 
 import Relatedgames from "../components/Relatedgames";
 import BtnWishlist from "../components/BtnWishlist";
 import PageNotFoundProduct from "./PageNotFoundProduct";
-export default function DetailsProductPage() {
-  // Outlet context con carrello, wishlist e triggerAlert
-  const { productCart, setProductCart, triggerAlert } = useOutletContext();
 
+import "../style/DetailProductPage.css";
+
+export default function DetailsProductPage() {
+  const { productCart, setProductCart, triggerAlert } = useOutletContext();
   const { slug } = useParams();
   const [game, setGame] = useState(null);
   const [category, setCategory] = useState(null);
   const [error, setError] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
+  const [hoverImage, setHoverImage] = useState(null);
+  const [fade, setFade] = useState(false);
 
   const messageCart = " aggiunto al carrello!";
 
-  // Effetto per caricare il prodotto quando cambia lo slug
   useEffect(() => {
     fetch(`http://localhost:3030/api/products/${slug}`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Errore server: risposta non OK");
-        }
+        if (!res.ok) throw new Error("Errore server: risposta non OK");
         return res.json();
       })
       .then((data) => {
         setGame(data);
+        setMainImage(data.file_paths?.[0] || "fallback-image.jpg");
         setError(null);
       })
-      .catch((err) => {
-        console.error("Errore fetch:", err);
-        setError("Impossibile caricare il prodotto.");
-      });
+      .catch(() => setError("Impossibile caricare il prodotto."));
   }, [slug]);
 
-  // Effetto per ottenere la categoria numerica da game.id_category
   useEffect(() => {
     if (game?.id_category && game.id_category.length > 0) {
       setCategory(Number(game.id_category[0]));
@@ -48,53 +44,67 @@ export default function DetailsProductPage() {
     }
   }, [game]);
 
-  // Scrolla all’inizio della pagina quando cambia lo slug
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
 
-  // Mostra messaggio di caricamento
   if (!game && !error) {
     return <p className="text-center my-5">Caricamento in corso...</p>;
   }
 
-  // In caso di errore nella fetch
   if (error) {
     return <PageNotFoundProduct slug={slug} />;
   }
 
   return (
-    <div className="container">
+    <div id="details-product-page" className="container">
       <div className="containercard my-5 py-5">
         <div
           className="card shadow-lg border-0 rounded-4 overflow-hidden"
           style={{ backgroundColor: "#f9f9f9", color: "#222" }}
         >
           <div className="row g-0">
-            {/* Mia */}
             <div className="d-flex justify-content-end">
-              <div>
-                <BtnWishlist game={game} />
-              </div>
+              <BtnWishlist game={game} />
             </div>
 
             <div className="row g-0">
-              <div className="col-md-5 bg-light d-flex align-items-center justify-content-center p-3 position-relative">
-                <div>
+              {/* Colonna immagine */}
+              <div className="col-md-5 bg-light d-flex flex-column align-items-center justify-content-start p-3">
+                <div className="product-image-box mb-3">
                   <img
-                    src={game.file_paths?.[0] || "fallback-image.jpg"} //
-                    className="img-fluid rounded"
+                    src={hoverImage || mainImage}
                     alt={game.name}
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      maxHeight: "450px",
-                    }}
+                    className={`main-image ${fade ? "fade-out" : "fade-in"}`}
                   />
+                </div>
+
+                {/* Thumbnails */}
+                <div className="thumbnail-row d-flex justify-content-center mt-2">
+                  {game.file_paths?.map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`${game.name} thumbnail ${idx}`}
+                      className={`thumbnail-img ${
+                        mainImage === img ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        setFade(true);
+                        setTimeout(() => {
+                          setMainImage(img);
+                          setHoverImage(null);
+                          setFade(false);
+                        }, 200);
+                      }}
+                      onMouseEnter={() => setHoverImage(img)}
+                      onMouseLeave={() => setHoverImage(null)}
+                    />
+                  ))}
                 </div>
               </div>
 
-              {/* Colonna dettaglio gioco */}
+              {/* Colonna dettaglio */}
               <div className="col-md-7 p-4 d-flex flex-column justify-content-between">
                 <div>
                   <h2 className="fw-bold mb-3">{game.name}</h2>
@@ -151,7 +161,7 @@ export default function DetailsProductPage() {
                   </p>
                 </div>
 
-                {/* Sezione prezzo e Carrello con alert */}
+                {/* Prezzo e Carrello */}
                 <div className="mt-3">
                   {game.price !== game.original_price ? (
                     <>
@@ -171,11 +181,9 @@ export default function DetailsProductPage() {
                   <button
                     className="btn btn-dark btn-lg mt-2 w-100"
                     onClick={() => {
-                      // Aggiungi al carrello
                       const existingIndex = productCart.findIndex(
                         (p) => p.id === game.id
                       );
-
                       if (existingIndex !== -1) {
                         const newCart = [...productCart];
                         newCart[existingIndex].quantity += 1;
@@ -186,8 +194,6 @@ export default function DetailsProductPage() {
                           { ...game, quantity: 1 },
                         ]);
                       }
-
-                      // Trigger alert globale
                       triggerAlert(`${game.name}${messageCart} ✅`);
                     }}
                   >

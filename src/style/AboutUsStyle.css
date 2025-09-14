@@ -1,0 +1,138 @@
+/* Background generale */
+.about-lg {
+    min-height: 100vh;
+    background: #1b152c;
+    color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero section */
+.hero-banner {
+    padding-top: 7rem;
+    text-align: center;
+    background-color: #1b152c;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+
+.main-title {
+    font-size: 3.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #bbbbbb;
+    margin-top: 1rem;
+}
+
+.span-subtitle {
+    font-size: 1.2rem;
+    color: #3a86ff;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+/* Avatar team */
+.team-avatars {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #3a86ff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+    cursor: pointer;
+}
+
+/* Contenuto principale */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3rem 2rem;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Immagine team */
+.image-container {
+    flex: 1 1 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-logo {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 2px solid #444;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.team-logo:hover {
+    transform: scale(1.03);
+}
+
+/* Descrizione */
+.text-container {
+    flex: 2 1 400px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    padding: 1.5rem;
+    background-color: #1c1c1c;
+    border-left: 4px solid #3a86ff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(58, 134, 255, 0.1);
+}
+
+.text-container h2 {
+    font-size: 1.8rem;
+    color: #3a86ff;
+    margin-bottom: 1rem;
+}
+
+
+/* Modifiche responsive SM */
+
+@media (max-width: 500px) {
+    .team-avatars {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .hero-banner {
+        padding: 0 1rem;
+        padding-top: 7rem;
+        text-align: center;
+        background-color: #1b152c;
+
+    }
+}

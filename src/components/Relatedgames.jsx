@@ -116,17 +116,15 @@ export default function Relatedgames({ categoryId }) {
       >
         <div className="carousel-inner container mb-5 mt-5">
           {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`carousel-item ${index === 0 ? "active" : ""}`}
-            >
+              <div
+                key={index}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
+              >
               <div className="row gy-4">
                 {slide.map((game) => (
                   <div key={game.id} className="col-md-4">
-                    <div className="card bg-light h-100 mb-3">
+                    <div className="card bg-light h-100 mb-3 d-flex flex-column">
                       <img
-                        // src={`/img/${game.img || { img }
-                        //   }`}
                         src={game.file_paths[0]}
                         alt={game.name}
                         className="mx-auto d-block mt-3"
@@ -136,27 +134,27 @@ export default function Relatedgames({ categoryId }) {
                           objectFit: "cover",
                         }}
                       />
-                      <div className="card-body text-center">
-                        <h5 className="card-title">{game.name}</h5>
-                        <p className="card-text">{game.description}</p>
+                      <div className="card-body d-flex flex-column text-center">
+                        <div style={{minHeight:"70px"}}>
+                          <h4 className="card-title">{game.name}</h4>
+
+                        </div>
+                        <p className="card-text flex-grow-1">{game.description}</p>
                         <p className="card-text">
                           {game.price !== game.original_price ? (
                             <>
                               <span className="text-muted text-decoration-line-through me-2">
                                 €{game.original_price}
                               </span>
-                              <span className="fw-bold text-success">
-                                €{game.price}
-                              </span>
+                              <span className="fw-bold text-success">€{game.price}</span>
                             </>
                           ) : (
                             <span className="fw-bold">€{game.price}</span>
                           )}
                         </p>
-                        {/* Link al dettaglio o azione */}
                         <Link
                           to={`/products/${game.slug}`}
-                          className="btn btn-primary"
+                          className="btn btn-primary mt-auto"
                         >
                           Vai al gioco
                         </Link>
@@ -165,7 +163,8 @@ export default function Relatedgames({ categoryId }) {
                   </div>
                 ))}
               </div>
-            </div>
+
+              </div>
           ))}
         </div>
 

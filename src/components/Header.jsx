@@ -80,11 +80,11 @@ export default function Header({
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    to="/contatti"
+                    to="/aboutus"
                     className="nav-link"
                     onClick={closeMenu}
                   >
-                    Contatti
+                    Chi siamo
                   </NavLink>
                 </li>
               </ul>

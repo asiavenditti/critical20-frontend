@@ -1,7 +1,12 @@
 import React from "react";
+
 // import "animate.css";
 import { Link, NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+
+import "animate.css";
+
+
 export default function Jumbotron() {
   return (
     <section

@@ -1,17 +1,21 @@
 import { faTrash, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
+import { useState } from "react";
 
 export default function CardCart({
   productCart = [],
   setProductCart = () => {},
   showLink = true,
 }) {
+  const [svuotaCarello, setSvuotaCarello] = useState(false);
   const rimuoviDalCarrello = (indexToRemove) => {
     setProductCart(productCart.filter((_, i) => i !== indexToRemove));
   };
 
-  const svuotaCarrello = () => setProductCart([]);
+  const svuotaCarrello = () => {
+    setSvuotaCarello(true);
+  };
 
   const totale = productCart
     .reduce((acc, p) => acc + parseFloat(p.price) * (p.quantity || 1), 0)
@@ -113,6 +117,29 @@ export default function CardCart({
                 </Link>
               )}
             </div>
+            {svuotaCarello && (
+              <div className="d-flex flex-column align-items-center">
+                <span className="fw-semibold ">
+                  Sei sicuro di voler svuotare il carrello?
+                </span>
+                <div className="d-flex gap-2 my-3">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      setProductCart([]), setSvuotaCarello(false);
+                    }}
+                  >
+                    Si
+                  </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => setSvuotaCarello(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

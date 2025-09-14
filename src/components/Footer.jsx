@@ -11,27 +11,27 @@ export default function Footer() {
             <div className="footer-section-title">Il Team</div>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="footer-link">
+                <a href="https://github.com/asiavenditti" className="footer-link">
                   Asia Venditti
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a href="https://github.com/marzia-blasi" className="footer-link">
                   Marzia Blasi
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a href="https://github.com//CristianBuonocore02" className="footer-link">
                   Cristian Buonocore
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a href="https://github.com/edoardolova" className="footer-link">
                   Edoardo Lova
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a href="https://github.com/DavideCriscuolo" className="footer-link">
                   Davide Criscuolo
                 </a>
               </li>

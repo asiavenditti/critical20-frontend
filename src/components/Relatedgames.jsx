@@ -120,7 +120,7 @@ export default function Relatedgames({ categoryId }) {
               key={index}
               className={`carousel-item ${index === 0 ? "active" : ""}`}
             >
-              <div className="row">
+              <div className="row gy-4">
                 {slide.map((game) => (
                   <div key={game.id} className="col-md-4">
                     <div className="card bg-light h-100 mb-3">

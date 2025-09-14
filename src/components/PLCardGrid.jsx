@@ -20,10 +20,13 @@ export default function PLCardGrid({ game }) {
         </div>
 
         {/* Corpo della card con testo centrato */}
-        <div className="card-body  d-flex flex-column justify-content-end">
-          <h5 className="card-title ">{game.name}</h5>
-          <p className="card-text mb-1">{game.description}</p>
-          <p className="card-text m-0">
+        <div className="card-body  d-flex flex-column">
+          <div style={{minHeight:"60px"}} >
+            <h4 className="card-title fw-semibold text-center">{game.name}</h4>
+
+          </div>
+          <p className="card-text mb-3">{game.description}</p>
+          <p className="card-text m-0 mt-auto">
             {Number(game.price) !== Number(game.original_price) ? (
               <>
                 <span className="text-muted text-decoration-line-through me-2">

@@ -10,7 +10,7 @@ export default function PLCardLIst({ game }) {
       <div className="cardlist  card-body text-dark">
         <div className="py-2">
           <div className="me-5 ">
-            <h6>{game.name}</h6>
+            <h3>{game.name}</h3>
             <p className="">{game.description}</p>
           </div>
           <div className="d-flex list-group-flush  ">

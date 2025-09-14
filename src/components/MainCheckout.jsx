@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import CardCart from "./CardCart";
 import ThankYouC from "./ThankYouC";
@@ -81,7 +81,7 @@ function CustomStepIcon(props) {
 const CustomStepLabel = styled(StepLabel, {
   shouldForwardProp: (prop) =>
     prop !== "activeStepIndex" && prop !== "index",
-  })
+})
   (({ activeStepIndex, index }) => ({
     "& .MuiStepLabel-label": {
       color: activeStepIndex >= index ? "white" : "gray",
@@ -98,6 +98,7 @@ const CustomStepLabel = styled(StepLabel, {
 
 export default function MainCheckout({ showLink = true }) {
   const { productCart, setProductCart } = useOutletContext();
+  const navigate = useNavigate(); // Hook per la navigazione
 
   // Stati form
   const [userName, setUserName] = useState("");
@@ -213,6 +214,13 @@ export default function MainCheckout({ showLink = true }) {
   };
 
   const handleBack = () => {
+    // Se siamo nell'ultimo step (3) e l'ordine è stato effettuato, vai alla home
+    if (activeStep === 3 && ordineEffettuato) {
+      navigate("/"); // Naviga alla home (modifica il path se diverso)
+      return;
+    }
+
+    // Altrimenti comportamento normale
     setActiveStep((prev) => prev - 1);
     setErrors({});
     setMessage("");
@@ -506,7 +514,7 @@ export default function MainCheckout({ showLink = true }) {
                     ✅ Ordine effettuato con successo!
                   </Typography>
                   <Typography color="white">
-                    Riceverai un’email di conferma con il riepilogo dell’ordine
+                    Riceverai un'email di conferma con il riepilogo dell'ordine
                   </Typography>
                   <ThankYouC />
                 </>
@@ -520,8 +528,11 @@ export default function MainCheckout({ showLink = true }) {
 
           {/* Pulsanti navigazione */}
           <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-            <Button disabled={activeStep === 0} onClick={handleBack}>
-              Indietro
+            <Button
+              disabled={activeStep === 0}
+              onClick={handleBack}
+            >
+              {activeStep === 3 && ordineEffettuato ? "Torna alla Home" : "Indietro"}
             </Button>
             {activeStep === 2 ? (
               <Button

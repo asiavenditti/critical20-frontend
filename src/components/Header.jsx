@@ -103,8 +103,14 @@ export default function Header({
                   data-bs-target="#offcanvasWishlist"
                   aria-controls="offcanvasWishlist"
                 >
-                  <FontAwesomeIcon icon={faHeart} size="lg" />
-                  {/* Badge quantità */}
+                  <i
+                    className="fi fi-ts-dice-d20 text-white "
+                    style={{
+                      display: "inline-block",
+                      fontSize: "20px",
+                      verticalAlign: "middle",
+                    }}
+                  ></i>{" "}
                   {getTotalQuantity(wishlist) > 0 && (
                     <span
                       className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -112,7 +118,8 @@ export default function Header({
                     >
                       {getTotalQuantity(wishlist)}
                     </span>
-                  )}
+                  )}{" "}
+                  {/* Badge quantità */}
                 </button>
               </div>
 
@@ -128,10 +135,8 @@ export default function Header({
                 {/* Badge quantità */}
                 {getTotalQuantity(productCart) > 0 && (
                   <span
-
                     className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     style={{ top: "6px" }}
-
                   >
                     {getTotalQuantity(productCart)}
                   </span>
@@ -193,10 +198,7 @@ export default function Header({
             <Cart productCart={productCart} setProductCart={setProductCart} />
           </div>
         </div>
-
       </header>
-    
-
     </>
   );
 }

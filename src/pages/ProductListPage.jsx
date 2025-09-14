@@ -221,6 +221,13 @@ export default function ProductListPage() {
               vista lista
             </button>
           </div>
+          {loading && (
+            <div className="mn_100 d-flex justify-content-center align-items-center">
+              <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
 
           {/* 🎴 LISTA GIOCHI */}
           <div className={grid ? "grid g-4 row mt-5" : "list mt-5"}>
@@ -235,8 +242,6 @@ export default function ProductListPage() {
 
           {/*  Sentinel per infinite scroll */}
           <div ref={lastElementRef} style={{ height: "40px" }} />
-
-          {loading && <p className="text-center text-light">Caricamento...</p>}
         </div>
       </main>
     </>

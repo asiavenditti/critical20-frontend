@@ -100,6 +100,16 @@ export default function MainCheckout({ showLink = true }) {
   const { productCart, setProductCart } = useOutletContext();
   const navigate = useNavigate(); // Hook per la navigazione
 
+  const fieldLabels = {
+    userName: "Nome",
+    userEmail: "Email",
+    addressShipping: "Indirizzo di fatturazione",
+    address: "Indirizzo di spedizione",
+    phone: "Telefono",
+    discountCode: "Codice sconto"
+  };
+
+
   // Stati form
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -192,11 +202,14 @@ export default function MainCheckout({ showLink = true }) {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
-      setMessage(
-        "⚠️ Compila correttamente: " + Object.keys(newErrors).join(", ")
-      );
+      const readableFields = Object.keys(newErrors)
+        .map((key) => fieldLabels[key] || key) 
+        .join(", ");
+
+      setMessage("⚠️ Compila correttamente: " + readableFields);
       return false;
     }
+
 
     setMessage("");
     return true;

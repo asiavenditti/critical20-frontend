@@ -1,4 +1,5 @@
 // Style
+import { Link } from "react-router-dom";
 import "../style/footerstyle.css";
 
 export default function Footer() {
@@ -38,34 +39,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/*Info utili */}
+          {/* giochi in evidenza */}
           <div className="col-12 col-md-3 text-center">
-            <div className="footer-section-title">Info utili</div>
+            <div className="footer-section-title">giochi in evidenza</div>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="footer-link">
-                  Faq
-                </a>
+                <Link to="/products/ticket-to-ride-europe" className="footer-link">
+                  Ticket to Ride: Europe
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Il Blog
-                </a>
+                <Link to="/products/carcassonne" className="footer-link">
+                  Carcassonne
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Contattaci
-                </a>
+                <Link to="/products/7-wonders" className="footer-link">
+                  7 Wonders
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Termini e condizioni
-                </a>
+                <Link to="/products/patchwork" className="footer-link">
+                  Patchwork
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Condizioni generali
-                </a>
+                <Link to="/products/pandemic-legacy-season-1" className="footer-link">
+                  Pandemic Legacy: Season 1
+                </Link>
               </li>
             </ul>
           </div>
@@ -101,7 +102,7 @@ export default function Footer() {
         <hr className="footer-divider" />
 
         <div className="text-center">
-          <p className="footer-copy">
+          <p className="footer-copy pb-4">
             © 2025 - Critical20 - Il portale dei giochi da tavolo
           </p>
         </div>

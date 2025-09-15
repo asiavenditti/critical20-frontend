@@ -71,15 +71,6 @@ export default function Header({
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    to="/offerte"
-                    className="nav-link"
-                    onClick={closeMenu}
-                  >
-                    Offerte
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
                     to="/aboutus"
                     className="nav-link"
                     onClick={closeMenu}

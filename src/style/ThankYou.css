@@ -1,6 +1,14 @@
 .card_thank {
-  height: 700px;
+  height: 600px;
   background-image: url("/thankUImg.svg");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #1b152c;
   background-position: center;
+}
+
+@media screen and (max-width: 768px) {
+  .card_thank {
+    height: 200px;
+  }
 }

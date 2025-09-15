@@ -562,12 +562,12 @@ export default function MainCheckout({ showLink = true }) {
             ) : null}
           </Box>
 
-          {/* Messaggi dinamici */}
+          {/* Messaggi dinamici 
           {message && (
             <Typography align="center" sx={{ mt: 2 }} color="white">
               {message}
             </Typography>
-          )}
+          )}*/}
         </Paper>
       </div>
     </main>

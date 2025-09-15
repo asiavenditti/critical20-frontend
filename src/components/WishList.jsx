@@ -107,23 +107,27 @@ export default function WishList({
             </div>
           ))
         )}
-      </div>
-
-      {wishlist.length > 0 && (
-        <div className="card-footer d-flex flex-column gap-2">
-          <div className="d-flex justify-content-between">
-            <button className="btn btn-danger" onClick={svuotaWishlist}>
-              Svuota la wishlist
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={handleAggiungiAlCarrello}
-            >
-              Aggiungi tutto al carrello
-            </button>
+        {wishlist.length > 0 && (
+          <div className=" p-0 d-flex flex-column gap-2">
+            <div className="d-flex justify-content-between flex-wrap gap-2">
+              <div>
+                <button className="btn btn-danger" onClick={svuotaWishlist}>
+                  Svuota la wishlist
+                </button>
+              </div>
+              <div>
+                {" "}
+                <button
+                  className="btn btn-primary"
+                  onClick={handleAggiungiAlCarrello}
+                >
+                  Aggiungi tutto al carrello
+                </button>{" "}
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
